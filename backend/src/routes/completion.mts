@@ -1,7 +1,7 @@
 import express from "express";
 import OpenAI from "openai";
 import env from "dotenv";
-import requestBody from "../helpers/prompt.mjs";
+import prompt from "../helpers/prompt.mjs";
 import { ChatCompletionMessageParam } from "openai/resources";
 
 const router = express.Router();
@@ -17,7 +17,8 @@ router.post("/", async (req, res) => {
     const answers = req.body;
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: requestBody(answers),
+      temperature: 0,
+      messages: prompt(answers),
     });
     res.json(completion.choices[0].message.content);
   } catch (error) {

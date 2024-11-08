@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import express from "express";
 import OpenAI from "openai";
 import env from "dotenv";
-import requestBody from "../helpers/prompt.mjs";
+import prompt from "../helpers/prompt.mjs";
 const router = express.Router();
 env.config();
 const openai = new OpenAI({
@@ -22,7 +22,8 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const answers = req.body;
         const completion = yield openai.chat.completions.create({
             model: "gpt-3.5-turbo",
-            messages: requestBody(answers),
+            temperature: 0,
+            messages: prompt(answers),
         });
         res.json(completion.choices[0].message.content);
     }
