@@ -5,13 +5,16 @@ import {
   // Navigate,
 } from "react-router-dom";
 import QuestionForm from "./pages/questionForm/QuestionForm";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/*" element={<QuestionForm />} />
-        {/* <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} /> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         {/* <Route
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
