@@ -1,5 +1,4 @@
-/* 全体のスタイリング */
-body {
+.login-container {
   font-family: "Arial", sans-serif;
   background-color: #ebebeb !important;
   display: flex;
@@ -7,56 +6,53 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  flex-direction: column;
+  font-size: 16px;
 }
 
-/* フォームのコンテナ */
-.form-container {
+.login-container .form-container {
   background-color: white;
-  padding: 30px;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
 }
 
-/* タイトル */
-h1 {
-  margin: 0 0 20px;
-  font-size: 24px;
+.login-container h1 {
+  margin: 0 0 15px;
+  font-size: 26px; /* タイトルのフォントサイズを大きく */
   font-weight: bold;
   text-align: center;
 }
 
-/* フォーム要素のスタイリング */
-label {
+.login-container label {
   display: block;
-  font-size: 14px;
+  font-size: 16px; /* ラベルのフォントサイズを大きく */
   margin-bottom: 5px;
 }
 
-input {
+.login-container input {
   width: 100%;
-  padding: 8px;
-  font-size: 14px;
+  padding: 8px; /* 入力フィールドのパディングを調整 */
+  font-size: 16px; /* 入力フィールドのフォントサイズを大きく */
   border: 1px solid #ced4da;
   border-radius: 4px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   box-sizing: border-box;
 }
 
-/* エラーメッセージ */
-p {
+.login-container p {
   color: #e3342f;
-  margin: 0 0 15px;
-  font-size: 12px;
+  margin: 0 0 10px;
+  font-size: 14px; /* エラーメッセージのフォントサイズを調整 */
   max-width: 100%;
 }
 
-/* 送信ボタン */
-button {
+.login-container button {
   width: 100%;
-  padding: 8px;
-  font-size: 16px;
+  padding: 12px; /* ボタンのパディングを調整 */
+  font-size: 18px; /* ボタンのフォントサイズを大きく */
   font-weight: bold;
   background-color: #3490dc;
   color: white;
@@ -64,9 +60,9 @@ button {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 20px !important;
+  margin-top: 15px;
 }
 
-button:hover {
+.login-container button:hover {
   background-color: #2779bd;
 }

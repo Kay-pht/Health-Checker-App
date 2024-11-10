@@ -1,16 +1,26 @@
 import axios from "axios";
-import React, { FormEvent, useState } from "react";
-import QuestionsPage1 from "../../component/questionPages/QuestionsPage1";
-import QuestionsPage2 from "../../component/questionPages/QuestionsPage2";
-import QuestionsPage3 from "../../component/questionPages/QuestionsPage3";
-import QuestionsPage4 from "../../component/questionPages/QuestionsPage4";
-import QuestionsPage5 from "../../component/questionPages/QuestionsPage5";
+import React, { FormEvent, useEffect, useState } from "react";
+import QuestionsPage1 from "../../components/questionComps/QuestionsPage1";
+import QuestionsPage2 from "../../components/questionComps/QuestionsPage2";
+import QuestionsPage3 from "../../components/questionComps/QuestionsPage3";
+import QuestionsPage4 from "../../components/questionComps/QuestionsPage4";
+import QuestionsPage5 from "../../components/questionComps/QuestionsPage5";
+import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, logOut } from "../../firebase";
+import "./QuestionForm.css";
 
 const QuestionForm = () => {
-  const [answers, setAnswers] = useState({
-    q1: "",
-    q2: "",
-  });
+  const [answers, setAnswers] = useState({});
+  const navigate = useNavigate();
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    console.log(answers);
+  }, [answers]);
+  if (!user) {
+    navigate("/login");
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,7 +28,6 @@ const QuestionForm = () => {
       ...prevAnswers,
       [name]: value,
     }));
-    console.log(answers);
   };
   const [result, setResult] = useState("");
 
@@ -45,20 +54,24 @@ const QuestionForm = () => {
 
   const pageDownHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
     setPage(page - 1);
   };
 
   return (
-    <div>
+    <div className="questionForm-wrapper">
       <form onSubmit={getAnswers}>
-        <h1>Health Checker App</h1>
+        {/* <h1>Health Checker App</h1> */}
+        <button type="button" onClick={logOut}>
+          Log out
+        </button>
+
+        <h3>以下の食材をどのくらいの頻度で食べるか教えてください！ </h3>
         {page === 1 && (
           <QuestionsPage1
             handleChange={handleChange}
             result={result}
             getAnswers={getAnswers}
-            // answers={answers}
+            answers={answers}
           />
         )}
         {page === 2 && (
@@ -66,7 +79,7 @@ const QuestionForm = () => {
             handleChange={handleChange}
             result={result}
             getAnswers={getAnswers}
-            // answers={answers}
+            answers={answers}
           />
         )}
         {page === 3 && (
@@ -74,7 +87,7 @@ const QuestionForm = () => {
             handleChange={handleChange}
             result={result}
             getAnswers={getAnswers}
-            // answers={answers}
+            answers={answers}
           />
         )}
         {page === 4 && (
@@ -82,7 +95,7 @@ const QuestionForm = () => {
             handleChange={handleChange}
             result={result}
             getAnswers={getAnswers}
-            // answers={answers}
+            answers={answers}
           />
         )}
         {page === 5 && (
@@ -90,64 +103,31 @@ const QuestionForm = () => {
             handleChange={handleChange}
             result={result}
             getAnswers={getAnswers}
-            // answers={answers}
+            answers={answers}
           />
         )}
-        {page}
-        {page > 1 && <button onClick={pageDownHandler}>previous</button>}
-        {page <= 4 && <button onClick={pageUpHandler}>next</button>}
-        {page === 5 && <button type="submit">Submit</button>}
+        <div className="button-group">
+          {page > 1 && (
+            <button className="previous" onClick={pageDownHandler}>
+              previous
+            </button>
+          )}
+          {page === 5 && (
+            <button className="submit" type="submit">
+              Submit
+            </button>
+          )}
+          {page != 5 && (
+            <button className="next" onClick={pageUpHandler}>
+              next
+            </button>
+          )}
+        </div>
+
         <div className="result">{result}</div>
       </form>
     </div>
   );
 };
-
-{
-  /* <Route
-          path="/page2"
-          element={
-            <QuestionsPage2
-              handleChange={handleChange}
-              result={result}
-              getAnswers={getAnswers}
-              answers={answers}
-            />
-          }
-        />
-        <Route
-          path="/page3"
-          element={
-            <QuestionsPage3
-              handleChange={handleChange}
-              result={result}
-              getAnswers={getAnswers}
-              answers={answers}
-            />
-          }
-        />
-        <Route
-          path="/page4"
-          element={
-            <QuestionsPage4
-              handleChange={handleChange}
-              result={result}
-              getAnswers={getAnswers}
-              answers={answers}
-            />
-          }
-        />
-        <Route
-          path="/page5"
-          element={
-            <QuestionsPage5
-              handleChange={handleChange}
-              result={result}
-              getAnswers={getAnswers}
-              answers={answers}
-            />
-          }
-        /> */
-}
 
 export default QuestionForm;

@@ -1,62 +1,58 @@
-/* 全体のスタイリング */
-body {
+.register-container {
   font-family: "Arial", sans-serif;
   background-color: #ebebeb !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   margin: 0;
+  font-size: 16px;
+  flex-direction: column;
 }
 
-/* フォームのコンテナ */
-.form-container {
+.register-container .form-container {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
-/* タイトル */
-h1 {
-  margin: 0 0 15px;
-  font-size: 22px;
+.register-container h1 {
+  margin: 0 0 5px;
+  font-size: 26px;
   font-weight: bold;
   text-align: center;
 }
 
-/* フォーム要素のスタイリング */
-label {
+.register-container label {
   display: block;
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 16px;
+  margin-bottom: 0px;
 }
 
-input {
+.register-container input {
   width: 100%;
-  padding: 6px;
-  font-size: 14px;
+  padding: 8px;
+  font-size: 16px;
   border: 1px solid #ced4da;
   border-radius: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 3px;
   box-sizing: border-box;
 }
 
-/* エラーメッセージ */
-p {
+.register-container p {
   color: #e3342f;
   margin: 0 0 10px;
-  font-size: 12px;
+  font-size: 14px;
   max-width: 100%;
 }
 
-/* 送信ボタン */
-button {
+.register-container button {
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 18px;
   font-weight: bold;
   background-color: #3490dc;
   color: white;
@@ -64,9 +60,9 @@ button {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
-button:hover {
+.register-container button:hover {
   background-color: #2779bd;
 }

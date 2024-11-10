@@ -7,7 +7,7 @@ export const loginValidationSchema = z.object({
 
 export const registerValidationSchema = z
   .object({
-    name: z.string().min(3, "At least 3 characters long"),
+    name: z.string().min(1, "At least 1 characters long"),
     email: z.string().email("Invalid email address"),
     password: z.string().min(8, "At least 8 characters long"),
     confirm: z.string().min(8, "At least 8 characters long"),

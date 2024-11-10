@@ -4,10 +4,14 @@ import { useForm } from "react-hook-form";
 import { registerValidationSchema } from "../../utils/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserAuth } from "../../interface/userAuth";
-import { auth, signUpWithEmailAndPassword } from "../../firebase";
+import {
+  auth,
+  logInWithAnonymous,
+  signUpWithEmailAndPassword,
+} from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import SignInButton from "../../component/SignInButton";
+import SignInButton from "../../components/SignInButton";
 
 interface RegisterFormValues extends UserAuth {
   name: string;
@@ -27,7 +31,7 @@ const Register = () => {
   });
 
   if (user) {
-    navigate("/");
+    navigate("/questionnaire");
   }
   const onSubmit = async (data: RegisterFormValues) => {
     console.log(data);
@@ -39,9 +43,9 @@ const Register = () => {
     console.log(user);
   };
   return (
-    <div className="form-container">
+    <div className="register-container">
       <h1>Sign Up Form</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="form-container">
         <label htmlFor="name">name</label>
         <input type="text" id="name" {...register("name")} />
         <p>{errors.name?.message as React.ReactNode}</p>
@@ -56,6 +60,9 @@ const Register = () => {
         <p>{errors.confirm?.message as React.ReactNode}</p>
         <button type="submit">Sign up</button>
         <SignInButton />
+        <button type="button" onClick={logInWithAnonymous}>
+          ゲストとしてログイン
+        </button>
 
         <p>
           Already have an account?
