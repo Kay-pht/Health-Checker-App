@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { FormEvent, useEffect, useState } from "react";
-import QuestionsPage1 from "../../components/questionComps/QuestionsPage1";
-import QuestionsPage2 from "../../components/questionComps/QuestionsPage2";
-import QuestionsPage3 from "../../components/questionComps/QuestionsPage3";
-import QuestionsPage4 from "../../components/questionComps/QuestionsPage4";
-import QuestionsPage5 from "../../components/questionComps/QuestionsPage5";
+import QuestionsPage1 from "../../components/questionFormComps/QuestionsPage1";
+import QuestionsPage2 from "../../components/questionFormComps/QuestionsPage2";
+import QuestionsPage3 from "../../components/questionFormComps/QuestionsPage3";
+import QuestionsPage4 from "../../components/questionFormComps/QuestionsPage4";
+import QuestionsPage5 from "../../components/questionFormComps/QuestionsPage5";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logOut } from "../../firebase";
@@ -18,9 +18,11 @@ const QuestionForm = () => {
   useEffect(() => {
     console.log(answers);
   }, [answers]);
-  if (!user) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

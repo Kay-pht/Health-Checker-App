@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Register.css";
 import { useForm } from "react-hook-form";
 import { registerValidationSchema } from "../../utils/validationSchema";
@@ -30,9 +30,12 @@ const Register = () => {
     resolver: zodResolver(registerValidationSchema),
   });
 
-  if (user) {
-    navigate("/questionnaire");
-  }
+ useEffect(() => {
+   if (user) {
+     navigate("/questionnaire");
+   }
+ }, [user, navigate]);
+
   const onSubmit = async (data: RegisterFormValues) => {
     console.log(data);
     const user = await signUpWithEmailAndPassword(

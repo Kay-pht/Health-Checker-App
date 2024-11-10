@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,9 +29,11 @@ const Login = () => {
     resolver: zodResolver(loginValidationSchema),
   });
 
-  if (user) {
-    navigate("/questionnaire");
-  }
+  useEffect(() => {
+    if (user) {
+      navigate("/questionnaire");
+    }
+  }, [user, navigate]);
   const onSubmit = async (data: UserAuth) => {
     // Handle form submission
     const userInfo = await logInWithEmailAndPassword(data.email, data.password);
