@@ -82,39 +82,19 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
 
         <h3>以下の食材をどのくらいの頻度で食べるか教えてください！ </h3>
         {page === 1 && (
-          <QuestionsPage1
-            handleChange={handleChange}
-            getAnswers={getAnswers}
-            answers={answers}
-          />
+          <QuestionsPage1 handleChange={handleChange} answers={answers} />
         )}
         {page === 2 && (
-          <QuestionsPage2
-            handleChange={handleChange}
-            getAnswers={getAnswers}
-            answers={answers}
-          />
+          <QuestionsPage2 handleChange={handleChange} answers={answers} />
         )}
         {page === 3 && (
-          <QuestionsPage3
-            handleChange={handleChange}
-            getAnswers={getAnswers}
-            answers={answers}
-          />
+          <QuestionsPage3 handleChange={handleChange} answers={answers} />
         )}
         {page === 4 && (
-          <QuestionsPage4
-            handleChange={handleChange}
-            getAnswers={getAnswers}
-            answers={answers}
-          />
+          <QuestionsPage4 handleChange={handleChange} answers={answers} />
         )}
         {page === 5 && (
-          <QuestionsPage5
-            handleChange={handleChange}
-            getAnswers={getAnswers}
-            answers={answers}
-          />
+          <QuestionsPage5 handleChange={handleChange} answers={answers} />
         )}
         <div className="button-group">
           {page > 1 && (
