@@ -1,25 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "../../utils/validationSchema";
-import { UserAuth } from "../../interface/userAuth";
-import SignInButton from "../../components/SignInButton";
-import { useAuthState } from "react-firebase-hooks/auth";
-import {
-  auth,
-  logInWithAnonymous,
-  logInWithEmailAndPassword,
-  logOut,
-} from "../../firebase";
-// import SignOutButton from "../../component/SignOutButton";
-import UserInfo from "../../components/UserInfo";
-import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../../interfaces/interfaces";
+import { logInWithAnonymous, logInWithEmailAndPassword } from "../../firebase";
+import { Link } from "react-router-dom";
+import LogInWithGoogleButton from "../../components/LogInWithGoogleButton";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [user] = useAuthState(auth);
-
   const {
     register,
     handleSubmit,
@@ -29,13 +18,8 @@ const Login = () => {
     resolver: zodResolver(loginValidationSchema),
   });
 
-  useEffect(() => {
-    if (user) {
-      navigate("/questionnaire");
-    }
-  }, [user, navigate]);
+  // 入力情報(メアド・パスワード)をfirebaseで確認
   const onSubmit = async (data: UserAuth) => {
-    // Handle form submission
     const userInfo = await logInWithEmailAndPassword(data.email, data.password);
     console.log(`User logged in:${userInfo}`);
   };
@@ -51,28 +35,23 @@ const Login = () => {
         <input type="password" id="password" {...register("password")} />
         <p>{errors.password?.message as React.ReactNode}</p>
         <div>
-          {user ? (
-            <>
-              <button type="button" onClick={logOut}>
-                Log out
-              </button>
-              <UserInfo />
-              {/* <SignOutButton /> */}
-            </>
-          ) : (
-            <>
-              <button type="submit">ログイン</button>
-              <SignInButton />
-              <button type="button" onClick={logInWithAnonymous}>
-                ゲストとしてログイン
-              </button>
-
-              <p>
-                Don't have an account?
-                <Link to="/register">Sign up</Link>
-              </p>
-            </>
-          )}
+          <button type="submit">ログイン</button>
+          <LogInWithGoogleButton register={false} />
+          <button type="button" onClick={logInWithAnonymous}>
+            ゲストとしてログイン
+          </button>
+          <p>
+            新規登録は
+            <Link to="/register" className="text-blue-500">
+              こちら
+            </Link>
+          </p>
+          <p>
+            パスワードを忘れた方は
+            <Link to="/forget" className="text-blue-500">
+              こちら
+            </Link>
+          </p>
         </div>
       </form>
     </div>

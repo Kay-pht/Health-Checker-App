@@ -16,3 +16,7 @@ export const registerValidationSchema = z
     message: "Passwords don't match",
     path: ["confirm"],
   });
+
+export const forgetValidationSchema = z.object({
+  email: z.string().email("Invalid email address"),
+});

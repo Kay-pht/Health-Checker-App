@@ -5,25 +5,24 @@ import QuestionsPage2 from "../../components/questionFormComps/QuestionsPage2";
 import QuestionsPage3 from "../../components/questionFormComps/QuestionsPage3";
 import QuestionsPage4 from "../../components/questionFormComps/QuestionsPage4";
 import QuestionsPage5 from "../../components/questionFormComps/QuestionsPage5";
-import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logOut } from "../../firebase";
+import { auth, getToken, logOut } from "../../firebase";
 import "./QuestionForm.css";
+import { ResultProps, ResultType } from "../../interfaces/interfaces";
+import { useNavigate } from "react-router-dom";
 
-const QuestionForm = () => {
+// 質問フォームの親コンポーネント
+const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
   const [answers, setAnswers] = useState({});
   const navigate = useNavigate();
+
   const [user] = useAuthState(auth);
 
   useEffect(() => {
     console.log(answers);
   }, [answers]);
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-  }, [user, navigate]);
 
+  // 子コンポーネント内の回答をここでキャッチする
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setAnswers((prevAnswers) => ({
@@ -31,29 +30,43 @@ const QuestionForm = () => {
       [name]: value,
     }));
   };
-  const [result, setResult] = useState("");
+  // ここのanyは問題ないのか?
+  const [result, setResult] = useState<ResultType | null>(null);
 
-  // Send the answers to the backend API for further processing
+  //回答を送付して、AIによる診断結果を表示
   const getAnswers = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const submittedAnswer = { content: answers };
+    // user!は問題ないか?
+    const token = await getToken(user!);
+    if (!token) {
+      throw new Error("User is not authenticated");
+    }
+    // sessionStorageにトークンを保存
+    sessionStorage.setItem("authToken", token);
 
+    // ヘッダーにJWTを付けてバックエンドで検証するために送る
     try {
-      const response = await axios.post("/api/completion", submittedAnswer);
+      navigate("/result");
+      const response = await axios.post("/api/completion", submittedAnswer, {
+        headers: {
+          Authorization: `Bearer:${token}`,
+        },
+      });
+
       setResult(response.data);
-      console.log(response.data);
+      setDiagnosisResult(response.data);
     } catch (err) {
       console.error("Error sending answers to the backend API", err);
       alert("Error sending answers to the backend API");
     }
   };
-
+  // 子コンポーネントの切り替え
   const [page, setPage] = useState(1);
   const pageUpHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setPage(page + 1);
   };
-
   const pageDownHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setPage(page - 1);
@@ -71,7 +84,6 @@ const QuestionForm = () => {
         {page === 1 && (
           <QuestionsPage1
             handleChange={handleChange}
-            result={result}
             getAnswers={getAnswers}
             answers={answers}
           />
@@ -79,7 +91,6 @@ const QuestionForm = () => {
         {page === 2 && (
           <QuestionsPage2
             handleChange={handleChange}
-            result={result}
             getAnswers={getAnswers}
             answers={answers}
           />
@@ -87,7 +98,6 @@ const QuestionForm = () => {
         {page === 3 && (
           <QuestionsPage3
             handleChange={handleChange}
-            result={result}
             getAnswers={getAnswers}
             answers={answers}
           />
@@ -95,7 +105,6 @@ const QuestionForm = () => {
         {page === 4 && (
           <QuestionsPage4
             handleChange={handleChange}
-            result={result}
             getAnswers={getAnswers}
             answers={answers}
           />
@@ -103,7 +112,6 @@ const QuestionForm = () => {
         {page === 5 && (
           <QuestionsPage5
             handleChange={handleChange}
-            result={result}
             getAnswers={getAnswers}
             answers={answers}
           />
@@ -126,7 +134,14 @@ const QuestionForm = () => {
           )}
         </div>
 
-        <div className="result">{result}</div>
+        {result && (
+          <div className="result">
+            <h4>診断結果</h4>
+            <p>不足している栄養素: {result.missingNutrients.join(", ")}</p>
+            <p>推奨食材: {result.recommendedFoods.join(", ")}</p>
+            <p>スコア: {result.score}</p>
+          </div>
+        )}
       </form>
     </div>
   );

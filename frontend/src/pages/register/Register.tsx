@@ -1,26 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Register.css";
 import { useForm } from "react-hook-form";
 import { registerValidationSchema } from "../../utils/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserAuth } from "../../interface/userAuth";
-import {
-  auth,
-  logInWithAnonymous,
-  signUpWithEmailAndPassword,
-} from "../../firebase";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import SignInButton from "../../components/SignInButton";
+import { UserAuth } from "../../interfaces/interfaces";
+import { logInWithAnonymous, signUpWithEmailAndPassword } from "../../firebase";
+import { Link } from "react-router-dom";
+import LogInWithGoogleButton from "../../components/LogInWithGoogleButton";
 
 interface RegisterFormValues extends UserAuth {
   name: string;
   confirm: string;
 }
 
+// アカウント新規登録
 const Register = () => {
-  const navigate = useNavigate();
-  const [user] = useAuthState(auth);
   const {
     register,
     handleSubmit,
@@ -30,12 +24,7 @@ const Register = () => {
     resolver: zodResolver(registerValidationSchema),
   });
 
- useEffect(() => {
-   if (user) {
-     navigate("/questionnaire");
-   }
- }, [user, navigate]);
-
+  // firebaseに入力情報を登録してログイン
   const onSubmit = async (data: RegisterFormValues) => {
     console.log(data);
     const user = await signUpWithEmailAndPassword(
@@ -49,27 +38,29 @@ const Register = () => {
     <div className="register-container">
       <h1>Sign Up Form</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form-container">
-        <label htmlFor="name">name</label>
+        <label htmlFor="name">ニックネーム</label>
         <input type="text" id="name" {...register("name")} />
         <p>{errors.name?.message as React.ReactNode}</p>
-        <label htmlFor="email">email</label>
+        <label htmlFor="email">Eメール</label>
         <input type="email" id="email" {...register("email")} />
         <p>{errors.email?.message as React.ReactNode}</p>
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">パスワード</label>
         <input type="password" id="password" {...register("password")} />
         <p>{errors.password?.message as React.ReactNode}</p>
-        <label htmlFor="password">Re-enter password</label>
+        <label htmlFor="password">パスワード(確認用)</label>
         <input type="password" id="confirm" {...register("confirm")} />
         <p>{errors.confirm?.message as React.ReactNode}</p>
-        <button type="submit">Sign up</button>
-        <SignInButton />
+        <button type="submit">新規登録</button>
+        <LogInWithGoogleButton register={true} />
         <button type="button" onClick={logInWithAnonymous}>
           ゲストとしてログイン
         </button>
 
         <p>
-          Already have an account?
-          <Link to="/login">Login</Link>
+          アカウントを持っている方は
+          <Link to="/login" className="text-blue-500">
+            ログイン
+          </Link>
         </p>
       </form>
     </div>
