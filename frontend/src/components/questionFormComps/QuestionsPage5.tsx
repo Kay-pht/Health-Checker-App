@@ -1,5 +1,5 @@
-import { QuestionsProps } from "../../interface/questionsProps";
-import { frequencyArray, queryArray_page5 } from "../../queryData";
+import { QuestionsProps } from "../../interfaces/interfaces";
+import { frequencyArray, queryArray_page5 } from "../../utils/queryData";
 import TopBar from "./TopBar";
 
 const QuestionsPage5: React.FC<QuestionsProps> = ({

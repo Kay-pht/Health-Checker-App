@@ -1,5 +1,5 @@
-import { QuestionsProps } from "../../interface/questionsProps";
-import { frequencyArray, queryArray_page1 } from "../../queryData";
+import { QuestionsProps } from "../../interfaces/interfaces";
+import { frequencyArray, queryArray_page1 } from "../../utils/queryData";
 
 const QuestionsPage1: React.FC<QuestionsProps> = ({
   handleChange,
@@ -22,8 +22,8 @@ const QuestionsPage1: React.FC<QuestionsProps> = ({
                   id={`${query.key}_option${freq.key}`}
                   name={query.key}
                   type="radio"
-                  value={freq.value}
-                  checked={answers[query.key] === freq.value}
+                  value={freq.key}
+                  checked={answers[query.key] === freq.key}
                   onChange={handleChange}
                   required
                   autoFocus={
