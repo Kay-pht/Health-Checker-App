@@ -14,7 +14,7 @@ import { auth } from "./firebase";
 import Result from "./pages/result/Result";
 import { useState } from "react";
 import { ResultType } from "./interfaces/interfaces";
-import MyPage from "./pages/MyPage/MyPage";
+import MyPage from "./pages/myPage/MyPage";
 
 const App = () => {
   const [user] = useAuthState(auth);
