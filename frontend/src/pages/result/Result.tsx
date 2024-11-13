@@ -10,7 +10,7 @@ const Result = ({ result }: ResultProps) => {
   return (
     <div>
       <button onClick={logOut}>Log out</button>
-      <Link to={"/api/mypage"}>マイページ</Link>
+      <Link to={"/mypage"}>マイページ</Link>
       <div className="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md space-y-4">
         {result ? (
           <div className="result">

@@ -1,6 +1,5 @@
 export interface QuestionsProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  getAnswers: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   answers: Record<string, null>;
 }
 
@@ -9,6 +8,13 @@ export interface UserAuth {
   password: string;
 }
 
+export interface DBResultType {
+  missingNutrients: string[];
+  recommendedFoods: string[];
+  score: number;
+  userId?: string;
+  createdAt: Date;
+}
 export interface ResultType {
   missingNutrients: string[];
   recommendedFoods: string[];

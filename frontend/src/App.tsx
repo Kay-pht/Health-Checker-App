@@ -15,6 +15,7 @@ import Result from "./pages/result/Result";
 import { useState } from "react";
 import { ResultType } from "./interfaces/interfaces";
 import MyPage from "./pages/myPage/MyPage";
+import LandingPage from "./pages/LP/LandingPage";
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -26,6 +27,8 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
+
         <Route
           path="/login"
           element={user ? <Navigate to="/questionnaire" /> : <Login />}

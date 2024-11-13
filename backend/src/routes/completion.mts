@@ -16,7 +16,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// クライアントからフォームの回答を受け取る→ChatGPTに回答を求める→AIの診断結果をDB登録→userに結果返却
+// クライアントからフォームの回答を受け取る→トークン検証→ChatGPTに回答を求める→AIの診断結果をDB登録→userに結果返却
 router.post(
   "/",
   authenticate,
