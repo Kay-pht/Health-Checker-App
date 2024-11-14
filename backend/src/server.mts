@@ -14,6 +14,10 @@ app.use("/api/mypage", mypageRouter);
 app.get("/test", (req: Request, res: Response) => {
   res.send("Health Checker API");
 });
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(404).send("Not Found");
+});
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
