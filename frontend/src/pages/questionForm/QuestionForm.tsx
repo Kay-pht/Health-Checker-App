@@ -8,7 +8,7 @@ import QuestionsPage5 from "../../components/questionFormComps/QuestionsPage5";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, getToken, logOut } from "../../firebase";
 import "./QuestionForm.css";
-import { ResultProps, ResultType } from "../../interfaces/interfaces";
+import { ResultProps } from "../../interfaces/interfaces";
 import { useNavigate } from "react-router-dom";
 
 // 質問フォームの親コンポーネント
@@ -30,8 +30,6 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
       [name]: value,
     }));
   };
-  // ここのanyは問題ないのか?
-  const [result, setResult] = useState<ResultType | null>(null);
 
   //回答を送付して、AIによる診断結果を表示
   const getAnswers = async (e: FormEvent<HTMLFormElement>) => {
@@ -57,8 +55,7 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
           },
         }
       );
-
-      setResult(response.data);
+      // ここで得たstateをResult.tsxで表示する
       setDiagnosisResult(response.data);
     } catch (err) {
       console.error("Error sending answers to the backend API", err);
@@ -117,15 +114,6 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
             </button>
           )}
         </div>
-
-        {result && (
-          <div className="result">
-            <h4>診断結果</h4>
-            <p>不足している栄養素: {result.missingNutrients.join(", ")}</p>
-            <p>推奨食材: {result.recommendedFoods.join(", ")}</p>
-            <p>スコア: {result.score}</p>
-          </div>
-        )}
       </form>
     </div>
   );
