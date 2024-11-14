@@ -16,6 +16,10 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).send("Something broke!");
 });
 
+app.get("/", (req: Request, res: Response) => {
+  res.send("Health Checker API");
+});
+
 // Vercelの場合下記は不要
 app.listen(Number(port), () => {
   console.log(`Server is running at http://localhost:${port}`);
