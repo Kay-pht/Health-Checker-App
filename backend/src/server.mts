@@ -4,7 +4,7 @@ import mypageRouter from "./routes/mypage.mjs";
 import "./helpers/db.mjs";
 
 const app = express();
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use("/api/completion", completionRouter);
@@ -15,6 +15,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).send("Something broke!");
 });
 
-app.listen(Number(port), "0.0.0.0", () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+// Vercelの場合下記は不要
+// app.listen(Number(port), "0.0.0.0", () => {
+//   console.log(`Server is running at http://localhost:${port}`);
+// });
