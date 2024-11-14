@@ -11,13 +11,12 @@ app.use(express.json());
 app.use("/api/completion", completionRouter);
 app.use("/api/mypage", mypageRouter);
 
+app.get("/test", (req: Request, res: Response) => {
+  res.send("Health Checker API");
+});
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
-});
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Health Checker API");
 });
 
 // Vercelの場合下記は不要
