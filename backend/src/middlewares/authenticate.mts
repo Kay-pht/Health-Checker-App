@@ -17,10 +17,12 @@ if (!serviceAccountPath) {
 //初期化
 const initializeFirebaseAdmin = async () => {
   const serviceAccount = JSON.parse(
-    // 非同期でファイルの読み込み
+    // デプロイ用
     Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT!, "base64").toString(
       "utf-8"
     )
+    // デプロイ時、下記不要。非同期でファイルの読み込み
+    // await fs.readFile(serviceAccountPath, "utf-8")
   );
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),

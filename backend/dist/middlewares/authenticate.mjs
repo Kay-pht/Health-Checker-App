@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import admin from "firebase-admin";
 import * as dotenv from "dotenv";
-import * as path from "path";
 import { promises as fs } from "fs";
 dotenv.config();
 // キーがあるファイルパスを渡す
@@ -21,7 +20,10 @@ if (!serviceAccountPath) {
 const initializeFirebaseAdmin = () => __awaiter(void 0, void 0, void 0, function* () {
     const serviceAccount = JSON.parse(
     // 非同期でファイルの読み込み
-    yield fs.readFile(path.resolve(serviceAccountPath), "utf-8"));
+    // Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT!, "base64").toString(
+    //   "utf-8"
+    // )
+    yield fs.readFile(serviceAccountPath, "utf-8"));
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount),
     });

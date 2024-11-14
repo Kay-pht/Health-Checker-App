@@ -48,11 +48,15 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
     // ヘッダーにJWTを付けてバックエンドで検証するために送る
     try {
       navigate("/result");
-      const response = await axios.post("/api/completion", submittedAnswer, {
-        headers: {
-          Authorization: `Bearer:${token}`,
-        },
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/completion`,
+        submittedAnswer,
+        {
+          headers: {
+            Authorization: `Bearer:${token}`,
+          },
+        }
+      );
 
       setResult(response.data);
       setDiagnosisResult(response.data);
