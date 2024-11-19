@@ -7,18 +7,20 @@ import { CustomAuthRequest } from "../interfaces/interfaces";
 
 dotenv.config();
 // キーがあるファイルパスを渡す
-const serviceAccountPath = process.env.SERVICE_ACCOUNT_KEY_PATH;
-if (!serviceAccountPath) {
+const serviceAccountKey = process.env.SERVICE_ACCOUNT_KEY;
+if (!serviceAccountKey) {
   throw new Error(
-    "Service account key path is not defined in the environment variables."
+    "Service account key is not defined in the environment variables."
   );
 }
-
 //初期化
 const initializeFirebaseAdmin = async () => {
   try {
     const serviceAccount = JSON.parse(
-      await fs.readFile(serviceAccountPath, "utf-8")
+      // デプロイ用
+      Buffer.from(serviceAccountKey, "base64").toString("utf-8")
+      // 開発環境用
+      // await fs.readFile(serviceAccountPath, "utf-8")
     );
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
