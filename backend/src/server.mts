@@ -2,10 +2,21 @@ import express, { NextFunction, Request, Response } from "express";
 import completionRouter from "./routes/completion.mjs";
 import mypageRouter from "./routes/mypage.mjs";
 import "./helpers/db.mjs";
+import cors from "cors";
 
 const app = express();
-// Vercelの場合下記は不要
+// Vercelの場合下記は不要。
 const port = process.env.PORT || 3000;
+
+// // CORSを許可する
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true,
+//   })
+// );
+
 app.use(express.json());
 
 app.use("/api/completion", completionRouter);

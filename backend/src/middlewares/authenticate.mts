@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import admin from "firebase-admin";
 import * as dotenv from "dotenv";
-// import * as path from "path";
-// import { promises as fs } from "fs";
+import * as path from "path";
+import { promises as fs } from "fs";
 import { CustomAuthRequest } from "../interfaces/interfaces";
 
 dotenv.config();
@@ -16,22 +16,21 @@ if (!serviceAccountPath) {
 
 //初期化
 const initializeFirebaseAdmin = async () => {
-  const serviceAccount = JSON.parse(
-    // デプロイ用
-    Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT!, "base64").toString(
-      "utf-8"
-    )
-    // デプロイ時、下記不要。非同期でファイルの読み込み
-    // await fs.readFile(serviceAccountPath, "utf-8")
-  );
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-  });
+  try {
+    const serviceAccount = JSON.parse(
+      await fs.readFile(serviceAccountPath, "utf-8")
+    );
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+    });
+    console.log("Firebase Admin initialized successfully.");
+  } catch (error) {
+    console.error("Failed to read service account key file:", error);
+    throw new Error("Failed to initialize Firebase Admin.");
+  }
 };
 
-initializeFirebaseAdmin().catch((error) => {
-  console.error("Failed to initialize Firebase Admin:", error);
-});
+initializeFirebaseAdmin();
 
 // クライアントから送られてきたトークンの検証
 export const authenticate = async (

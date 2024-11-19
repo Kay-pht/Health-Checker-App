@@ -36,7 +36,11 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
     e.preventDefault();
     const submittedAnswer = { content: answers };
     // user!は問題ないか?
-    const token = await getToken(user!);
+    if (!user) {
+      alert("Please sign in to proceed");
+      return;
+    }
+    const token = await getToken(user);
     if (!token) {
       throw new Error("User is not authenticated");
     }
@@ -46,15 +50,11 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
     // ヘッダーにJWTを付けてバックエンドで検証するために送る
     try {
       navigate("/result");
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/completion`,
-        submittedAnswer,
-        {
-          headers: {
-            Authorization: `Bearer:${token}`,
-          },
-        }
-      );
+      const response = await axios.post("/api/completion", submittedAnswer, {
+        headers: {
+          Authorization: `Bearer:${token}`,
+        },
+      });
       // ここで得たstateをResult.tsxで表示する
       setDiagnosisResult(response.data);
     } catch (err) {

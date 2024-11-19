@@ -21,10 +21,7 @@ const fetcher = async (url: string) => {
 };
 
 const MyPage = () => {
-  const { data, error } = useSWR(
-    `${import.meta.env.VITE_API_BASE_URL}/api/mypage`,
-    fetcher
-  );
+  const { data, error } = useSWR("/api/mypage", fetcher);
   console.log(data);
 
   if (error) return <div>failed to load</div>;

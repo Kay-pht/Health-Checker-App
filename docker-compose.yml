@@ -1,0 +1,40 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app/frontend
+    command: npm run dev --prefix /app/frontend
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - SERVICE_ACCOUNT_KEY_PATH=/app/keys/healthy-checker-app-firebase-adminsdk.json
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    command: node /app/dist/backend/server.mjs
+    depends_on:
+      - mongo
+    volumes:
+      - ${SERVICE_ACCOUNT_KEY_PATH}:/app/keys/healthy-checker-app-firebase-adminsdk.json
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
