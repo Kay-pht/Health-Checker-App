@@ -6,7 +6,6 @@ import { promises as fs } from "fs";
 import { CustomAuthRequest } from "../interfaces/interfaces";
 
 dotenv.config();
-// キーがあるファイルパスを渡す
 const serviceAccountKey = process.env.SERVICE_ACCOUNT_KEY;
 if (!serviceAccountKey) {
   throw new Error(

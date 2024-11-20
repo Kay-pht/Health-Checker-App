@@ -3,6 +3,7 @@ import completionRouter from "./routes/completion.mjs";
 import mypageRouter from "./routes/mypage.mjs";
 import "./helpers/db.mjs";
 import cors from "cors";
+import path from "path";
 
 const app = express();
 // Vercelの場合下記は不要。
@@ -17,6 +18,9 @@ const port = process.env.PORT || 3000;
 //   })
 // );
 
+// 本番環境での静的ファイルの提供
+app.use(express.static("/app/dist/frontend"));
+
 app.use(express.json());
 
 app.use("/api/completion", completionRouter);
@@ -26,8 +30,13 @@ app.get("/test", (req: Request, res: Response) => {
   res.send("Health Checker API");
 });
 
+// 上記以外のルートはindex.htmlを返す（SPAの場合）
+app.get("*", (req: Request, res: Response) => {
+  res.sendFile("/app/dist/frontend/index.html");
+});
+
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).send("Not Found");
+  res.status(404).send("Sorry...Not Found");
 });
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
