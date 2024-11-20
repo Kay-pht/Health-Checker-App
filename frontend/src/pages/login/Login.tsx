@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "../../utils/validationSchema";
 import { UserAuth } from "../../interfaces/interfaces";
-import { logInWithAnonymous, logInWithEmailAndPassword } from "../../firebase";
 import { Link } from "react-router-dom";
 import LogInWithGoogleButton from "../../components/LogInWithGoogleButton";
+import { logInWithAnonymous, logInWithEmailAndPassword } from "../../firebase";
 
 const Login = () => {
   const {
