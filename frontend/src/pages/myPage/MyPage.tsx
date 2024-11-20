@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import axios from "axios";
 import { DBResultType } from "../../interfaces/interfaces";
+import Top from "../../components/topComp/Top";
 
 const MyPage = () => {
   const fetcher = async (url: string) => {
@@ -31,6 +32,7 @@ const MyPage = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
+      <Top />
       <h1 className="text-2xl font-bold mb-4">これまでの診断結果</h1>
       <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
         <thead>

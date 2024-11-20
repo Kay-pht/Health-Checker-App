@@ -35,28 +35,80 @@ const Register = () => {
     console.log(user);
   };
   return (
-    <div className="register-container">
-      <h1>Sign Up Form</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="form-container">
-        <label htmlFor="name">ニックネーム</label>
-        <input type="text" id="name" {...register("name")} />
-        <p>{errors.name?.message as React.ReactNode}</p>
-        <label htmlFor="email">Eメール</label>
-        <input type="email" id="email" {...register("email")} />
-        <p>{errors.email?.message as React.ReactNode}</p>
-        <label htmlFor="password">パスワード</label>
-        <input type="password" id="password" {...register("password")} />
-        <p>{errors.password?.message as React.ReactNode}</p>
-        <label htmlFor="password">パスワード(確認用)</label>
-        <input type="password" id="confirm" {...register("confirm")} />
-        <p>{errors.confirm?.message as React.ReactNode}</p>
-        <button type="submit">新規登録</button>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-200 font-sans">
+      <h1 className="text-2xl font-bold mb-1 text-center">Sign Up Form</h1>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="bg-white p-5 rounded-lg shadow-md w-full max-w-md"
+      >
+        <label htmlFor="name" className="block text-lg mb-0">
+          ニックネーム
+        </label>
+        <input
+          type="text"
+          id="name"
+          {...register("name")}
+          className="w-full p-2 text-lg border border-gray-300 rounded mb-1"
+        />
+        <p className="text-red-600 text-sm mb-2">
+          {errors.name?.message as React.ReactNode}
+        </p>
+
+        <label htmlFor="email" className="block text-lg mb-0">
+          Eメール
+        </label>
+        <input
+          type="email"
+          id="email"
+          {...register("email")}
+          className="w-full p-2 text-lg border border-gray-300 rounded mb-1"
+        />
+        <p className="text-red-600 text-sm mb-2">
+          {errors.email?.message as React.ReactNode}
+        </p>
+
+        <label htmlFor="password" className="block text-lg mb-0">
+          パスワード
+        </label>
+        <input
+          type="password"
+          id="password"
+          {...register("password")}
+          className="w-full p-2 text-lg border border-gray-300 rounded mb-1"
+        />
+        <p className="text-red-600 text-sm mb-2">
+          {errors.password?.message as React.ReactNode}
+        </p>
+
+        <label htmlFor="confirm" className="block text-lg mb-0">
+          パスワード(確認用)
+        </label>
+        <input
+          type="password"
+          id="confirm"
+          {...register("confirm")}
+          className="w-full p-2 text-lg border border-gray-300 rounded mb-1"
+        />
+        <p className="text-red-600 text-sm mb-2">
+          {errors.confirm?.message as React.ReactNode}
+        </p>
+
+        <button
+          type="submit"
+          className="w-full p-3 text-lg font-bold bg-blue-500 text-white rounded mt-2 hover:bg-blue-600 transition-colors"
+        >
+          新規登録
+        </button>
         <LogInWithGoogleButton register={true} />
-        <button type="button" onClick={logInWithAnonymous}>
+        <button
+          type="button"
+          onClick={logInWithAnonymous}
+          className="w-full p-3 text-lg font-bold bg-gray-500 text-white rounded mt-2 hover:bg-gray-600 transition-colors"
+        >
           ゲストとしてログイン
         </button>
 
-        <p>
+        <p className="mt-4">
           アカウントを持っている方は
           <Link to="/login" className="text-blue-500">
             ログイン

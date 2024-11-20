@@ -35,21 +35,37 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="login-container">
-      <h1>パスワードの再設定</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="form-container">
-        <label htmlFor="email">email</label>
-        <input type="email" id="email" {...register("email")} />
-        <p>{errors.email?.message as React.ReactNode}</p>
-        <p>{message}</p>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-2xl font-bold mb-6">パスワードの再設定</h1>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="bg-white p-8 rounded shadow-md w-full max-w-md"
+      >
+        <label htmlFor="email" className="block text-lg font-medium mb-2">
+          email
+        </label>
+        <input
+          type="email"
+          id="email"
+          {...register("email")}
+          className="w-full p-2 border border-gray-300 rounded mb-4"
+        />
+        <p className="text-red-500">
+          {errors.email?.message as React.ReactNode}
+        </p>
+        <p className="text-green-500">{message}</p>
 
-        <div>
-          <button type="submit">送信</button>
-
-          <p>
-            Don't have an account?
+        <div className="flex flex-col items-center">
+          <button
+            type="submit"
+            className="w-full p-3 text-lg font-bold bg-blue-500 text-white rounded mt-2 hover:bg-blue-600 transition-colors"
+          >
+            送信
+          </button>
+          <p className="mt-4">
+            アカウントをお持ちでない場合は
             <Link to="/register" className="text-blue-500">
-              Sign up
+              新規登録
             </Link>
           </p>
         </div>

@@ -6,10 +6,11 @@ import QuestionsPage3 from "../../components/questionFormComps/QuestionsPage3";
 import QuestionsPage4 from "../../components/questionFormComps/QuestionsPage4";
 import QuestionsPage5 from "../../components/questionFormComps/QuestionsPage5";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, getToken, logOut } from "../../firebase";
+import { auth, getToken } from "../../firebase";
 import "./QuestionForm.css";
 import { ResultProps } from "../../interfaces/interfaces";
 import { useNavigate } from "react-router-dom";
+import Top from "../../components/topComp/Top";
 
 // 質問フォームの親コンポーネント
 const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
@@ -74,14 +75,19 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
   };
 
   return (
-    <div className="questionForm-wrapper">
+    <div className="max-w-3xl mx-auto p-5 bg-gray-100 rounded-lg shadow-md">
+      {/* <button
+        type="button"
+        onClick={logOut}
+        className="mb-4 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition-transform transform hover:scale-105"
+      >
+        Log out
+      </button> */}
+      <Top />
       <form onSubmit={getAnswers}>
-        {/* <h1>Health Checker App</h1> */}
-        <button type="button" onClick={logOut}>
-          Log out
-        </button>
-
-        <h3>以下の食材をどのくらいの頻度で食べるか教えてください！ </h3>
+        <h3 className="text-xl text-gray-800 mb-5">
+          以下の食材をどのくらいの頻度で食べるか教えてください！
+        </h3>
         {page === 1 && (
           <QuestionsPage1 handleChange={handleChange} answers={answers} />
         )}
@@ -97,19 +103,28 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
         {page === 5 && (
           <QuestionsPage5 handleChange={handleChange} answers={answers} />
         )}
-        <div className="button-group">
+        <div className="flex justify-between items-center mt-5">
           {page > 1 && (
-            <button className="previous" onClick={pageDownHandler}>
+            <button
+              className="w-24 text-center bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition-transform transform hover:scale-105"
+              onClick={pageDownHandler}
+            >
               previous
             </button>
           )}
           {page === 5 && (
-            <button className="submit" type="submit">
+            <button
+              className="w-24 text-center bg-green-500 text-white font-bold py-2 rounded hover:bg-green-600 transition-transform transform hover:scale-105"
+              type="submit"
+            >
               Submit
             </button>
           )}
-          {page != 5 && (
-            <button className="next" onClick={pageUpHandler}>
+          {page !== 5 && (
+            <button
+              className="w-24 text-center bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition-transform transform hover:scale-105 ml-auto"
+              onClick={pageUpHandler}
+            >
               next
             </button>
           )}

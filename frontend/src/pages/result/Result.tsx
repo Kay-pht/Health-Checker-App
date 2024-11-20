@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-import { logOut } from "../../firebase";
 import { ResultType } from "../../interfaces/interfaces";
+import Top from "../../components/topComp/Top";
 
 interface ResultProps {
   result: ResultType | null;
@@ -9,8 +8,7 @@ interface ResultProps {
 const Result = ({ result }: ResultProps) => {
   return (
     <div>
-      <button onClick={logOut}>Log out</button>
-      <Link to={"/mypage"}>マイページ</Link>
+      <Top />
       <div className="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md space-y-4">
         {result ? (
           <div className="result">
