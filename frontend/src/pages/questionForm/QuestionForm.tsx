@@ -22,7 +22,8 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
     console.log(answers);
   }, [answers]);
 
-  // 子コンポーネント内の回答をここでキャッチする
+  // 子コンポーネント内(ページ1~5)の回答をここでキャッチする
+  // setStateを関数に内包して、プロップスとして渡す
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setAnswers((prevAnswers) => ({
@@ -35,7 +36,6 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
   const getAnswers = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const submittedAnswer = { content: answers };
-    // user!は問題ないか?
     if (!user) {
       alert("Please sign in to proceed");
       return;
@@ -47,7 +47,7 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
     // sessionStorageにトークンを保存
     sessionStorage.setItem("authToken", token);
 
-    // ヘッダーにJWTを付けてバックエンドで検証するために送る
+    // ヘッダーにトークンを付与。バックエンドでの検証用
     try {
       navigate("/result");
       const response = await axios.post("/api/completion", submittedAnswer, {

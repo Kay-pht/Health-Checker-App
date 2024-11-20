@@ -13,7 +13,7 @@ interface RegisterFormValues extends UserAuth {
   confirm: string;
 }
 
-// アカウント新規登録
+// アカウント新規登録ページ
 const Register = () => {
   const {
     register,
@@ -24,7 +24,7 @@ const Register = () => {
     resolver: zodResolver(registerValidationSchema),
   });
 
-  // firebaseに入力情報を登録してログイン
+  // firebaseに入力情報を新規登録する
   const onSubmit = async (data: RegisterFormValues) => {
     console.log(data);
     const user = await signUpWithEmailAndPassword(

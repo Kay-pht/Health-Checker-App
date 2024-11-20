@@ -9,6 +9,7 @@ import { auth, submitPasswordResetEmail } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
+  // ログインしていれば回答フォームへ接続
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
   useEffect(() => {
@@ -16,6 +17,7 @@ const ForgetPassword = () => {
       navigate("/questionnaire");
     }
   }, [user, navigate]);
+
   const [message, setMessage] = useState("");
 
   const {
@@ -26,9 +28,8 @@ const ForgetPassword = () => {
     mode: "onChange",
     resolver: zodResolver(forgetValidationSchema),
   });
-
+  // パスワードリセットメールを送信
   const onSubmit = async (data: UserAuth) => {
-    // Handle form submission
     await submitPasswordResetEmail(data.email);
     setMessage("パスワードリセットメールを送信しました。");
   };

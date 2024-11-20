@@ -23,12 +23,9 @@ services:
       - MONGO_URI=${MONGO_URI}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - SERVICE_ACCOUNT_KEY=${SERVICE_ACCOUNT_KEY}
-      # - SERVICE_ACCOUNT_KEY_PATH=/app/keys/healthy-checker-app-firebase-adminsdk.json
     command: node /app/dist/backend/server.mjs
     depends_on:
       - mongo
-    # volumes:
-    #   - ${SERVICE_ACCOUNT_KEY_PATH}:/app/keys/healthy-checker-app-firebase-adminsdk.json
 
   mongo:
     image: mongo:latest

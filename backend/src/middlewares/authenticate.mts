@@ -15,11 +15,9 @@ if (!serviceAccountKey) {
 //初期化
 const initializeFirebaseAdmin = async () => {
   try {
+    // エンコードされたキーをbase64形式でデコード。その後、JSON形式でキーを読み出す
     const serviceAccount = JSON.parse(
-      // デプロイ用
       Buffer.from(serviceAccountKey, "base64").toString("utf-8")
-      // 開発環境用
-      // await fs.readFile(serviceAccountPath, "utf-8")
     );
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
@@ -46,10 +44,10 @@ export const authenticate = async (
   }
   const idToken = authHeader.split(":")[1];
   try {
-    // Firebase Admin SDKの認証サービスにアクセスして、verifyIdToken() メソッドでIDトークンを検証。
-    //トークンが有効なら、トークンに含まれる情報（デコードされたトークン）を返す
+    // Firebase Admin SDKの認証サービスにアクセスして、verifyIdToken()でトークンを検証。
+    //トークンが有効なら、トークンに含まれる情報（デコードされたユーザー情報）を返す
     const decodedToken = await admin.auth().verifyIdToken(idToken);
-    // リクエストにユーザーIDを追加して、後続のルートで使用できるようにする
+    // リクエストにユーザーIDを追加して、後続のルートでユーザーIDを使用できるようにする
     req.userId = decodedToken.uid;
     next();
   } catch (error) {

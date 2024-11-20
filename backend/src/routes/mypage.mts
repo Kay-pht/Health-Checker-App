@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get("/", authenticate, async (req: CustomAuthRequest, res: Response) => {
   try {
+    // これまでの診断結果を返却
     await getResultsByUserId(req, res);
     console.log("Results retrieved successfully");
   } catch (error) {

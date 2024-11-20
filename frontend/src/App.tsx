@@ -20,7 +20,7 @@ import LandingPage from "./pages/LP/LandingPage";
 const App = () => {
   const [user] = useAuthState(auth);
   // 要確認
-  // どちらをプロップスとして渡すべきか?またはuseContextで管理する方がよいか？
+  // setDiagnosisResultをそのままプロップスとして渡しているが問題ないか？関数に内包して、関数を渡すほうが良いのか?
   const [diagnosisResult, setDiagnosisResult] = useState<ResultType | null>(
     null
   );

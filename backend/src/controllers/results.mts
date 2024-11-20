@@ -17,7 +17,7 @@ async function getResultsByUserId(req: CustomAuthRequest, res: Response) {
   return res.json(results);
 }
 
-//結果のDB登録(回答をsubmitしたとき)
+//結果のDB登録(AIからの回答を返却するとき)
 async function registerResult(
   req: CustomAuthRequest,
   res: Response,

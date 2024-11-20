@@ -5,7 +5,7 @@ import { ResultType } from "../../interfaces/interfaces";
 interface ResultProps {
   result: ResultType | null;
 }
-
+// 診断結果ページ
 const Result = ({ result }: ResultProps) => {
   return (
     <div>

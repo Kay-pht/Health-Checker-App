@@ -40,7 +40,7 @@ export const getToken = async (user: User) => {
   }
 };
 
-// メアド&パスワードでアカ新規作成
+// メアド&パスワードでアカウント新規作成する用の関数
 export const signUpWithEmailAndPassword = async (
   email: string,
   password: string,
@@ -70,7 +70,7 @@ export const signUpWithEmailAndPassword = async (
   }
 };
 
-// メアド&パスワードでログイン
+// メアド&パスワードでログインする用の関数
 export const logInWithEmailAndPassword = async (
   email: string,
   password: string
@@ -95,7 +95,7 @@ export const logInWithEmailAndPassword = async (
     }
   }
 };
-// ゲスト(匿名)でログイン(サインアップ)
+// ゲスト(匿名)でログイン(サインアップ)する用の関数
 export const logInWithAnonymous = async () => {
   try {
     const userCredential = await signInAnonymously(auth);
@@ -112,7 +112,7 @@ export const logInWithAnonymous = async () => {
     }
   }
 };
-// ログアウト
+// ログアウト用の関数
 export const logOut = async () => {
   try {
     console.log("Signing out...");
@@ -127,7 +127,7 @@ export const logOut = async () => {
   }
 };
 
-// パスワード忘れた場合の再設定
+// パスワード忘れた場合の再設定用の関数
 export const submitPasswordResetEmail = async (email: string) => {
   try {
     await sendPasswordResetEmail(auth, email);

@@ -6,7 +6,6 @@ import cors from "cors";
 import path from "path";
 
 const app = express();
-// Vercelの場合下記は不要。
 const port = process.env.PORT || 3000;
 
 // // CORSを許可する
@@ -43,10 +42,8 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).send("Something broke!");
 });
 
-// Vercelの場合下記は不要
 app.listen(Number(port), () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
 
-// Vercel用にエクスポート
-// export default app;
+

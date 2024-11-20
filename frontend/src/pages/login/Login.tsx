@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import LogInWithGoogleButton from "../../components/LogInWithGoogleButton";
 import { logInWithAnonymous, logInWithEmailAndPassword } from "../../firebase";
 
+// ログインページ
 const Login = () => {
   const {
     register,
