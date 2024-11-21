@@ -10,7 +10,7 @@ import { auth, getToken } from "../../firebase";
 import "./QuestionForm.css";
 import { ResultProps } from "../../interfaces/interfaces";
 import { useNavigate } from "react-router-dom";
-import Top from "../../components/topComp/Top";
+import Top from "../../components/TopBar";
 
 // 質問フォームの親コンポーネント
 const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
@@ -75,61 +75,56 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-5 bg-gray-100 rounded-lg shadow-md">
-      {/* <button
-        type="button"
-        onClick={logOut}
-        className="mb-4 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition-transform transform hover:scale-105"
-      >
-        Log out
-      </button> */}
+    <div>
       <Top />
-      <form onSubmit={getAnswers}>
-        <h3 className="text-xl text-gray-800 mb-5">
-          以下の食材をどのくらいの頻度で食べるか教えてください！
-        </h3>
-        {page === 1 && (
-          <QuestionsPage1 handleChange={handleChange} answers={answers} />
-        )}
-        {page === 2 && (
-          <QuestionsPage2 handleChange={handleChange} answers={answers} />
-        )}
-        {page === 3 && (
-          <QuestionsPage3 handleChange={handleChange} answers={answers} />
-        )}
-        {page === 4 && (
-          <QuestionsPage4 handleChange={handleChange} answers={answers} />
-        )}
-        {page === 5 && (
-          <QuestionsPage5 handleChange={handleChange} answers={answers} />
-        )}
-        <div className="flex justify-between items-center mt-5">
-          {page > 1 && (
-            <button
-              className="w-24 text-center bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition-transform transform hover:scale-105"
-              onClick={pageDownHandler}
-            >
-              previous
-            </button>
+      <div className="max-w-4xl mx-auto p-5 bg-gray-100 rounded-lg shadow-md">
+        <form onSubmit={getAnswers}>
+          <h3 className="text-xl text-gray-800 mb-5">
+            以下の食材をどのくらいの頻度で食べるか教えてください！
+          </h3>
+          {page === 1 && (
+            <QuestionsPage1 handleChange={handleChange} answers={answers} />
+          )}
+          {page === 2 && (
+            <QuestionsPage2 handleChange={handleChange} answers={answers} />
+          )}
+          {page === 3 && (
+            <QuestionsPage3 handleChange={handleChange} answers={answers} />
+          )}
+          {page === 4 && (
+            <QuestionsPage4 handleChange={handleChange} answers={answers} />
           )}
           {page === 5 && (
-            <button
-              className="w-24 text-center bg-green-500 text-white font-bold py-2 rounded hover:bg-green-600 transition-transform transform hover:scale-105"
-              type="submit"
-            >
-              Submit
-            </button>
+            <QuestionsPage5 handleChange={handleChange} answers={answers} />
           )}
-          {page !== 5 && (
-            <button
-              className="w-24 text-center bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition-transform transform hover:scale-105 ml-auto"
-              onClick={pageUpHandler}
-            >
-              next
-            </button>
-          )}
-        </div>
-      </form>
+          <div className="flex justify-between items-center mt-5">
+            {page > 1 && (
+              <button
+                className="w-24 text-center bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition-transform transform hover:scale-105"
+                onClick={pageDownHandler}
+              >
+                previous
+              </button>
+            )}
+            {page === 5 && (
+              <button
+                className="w-24 text-center bg-green-500 text-white font-bold py-2 rounded hover:bg-green-600 transition-transform transform hover:scale-105"
+                type="submit"
+              >
+                Submit
+              </button>
+            )}
+            {page !== 5 && (
+              <button
+                className="w-24 text-center bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition-transform transform hover:scale-105 ml-auto"
+                onClick={pageUpHandler}
+              >
+                next
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

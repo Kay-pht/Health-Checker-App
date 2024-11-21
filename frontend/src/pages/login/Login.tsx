@@ -26,10 +26,13 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-2xl font-bold mb-6">Login Form</h1>
+      <h1 className="text-2xl font-bold ">ログインする</h1>
+      <p className="text-sm">
+        ログインするとこれまでの診断結果がチェックできます
+      </p>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-8 rounded shadow-md w-full max-w-md"
+        className="bg-white p-8 rounded shadow-md w-full max-w-lg"
       >
         <label htmlFor="email" className="block text-lg font-medium mb-2">
           email

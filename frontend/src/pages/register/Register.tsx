@@ -39,7 +39,7 @@ const Register = () => {
       <h1 className="text-2xl font-bold mb-1 text-center">Sign Up Form</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-5 rounded-lg shadow-md w-full max-w-md"
+        className="bg-white p-5 rounded-lg shadow-md w-full max-w-lg"
       >
         <label htmlFor="name" className="block text-lg mb-0">
           ニックネーム

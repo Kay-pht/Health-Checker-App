@@ -117,6 +117,7 @@ export const logOut = async () => {
   try {
     console.log("Signing out...");
     await signOut(auth);
+    // Navigate()
     console.log("User logged out successfully!");
   } catch (error) {
     if (error instanceof Error) {

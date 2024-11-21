@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { auth, logOut } from "../../firebase";
+import { auth, logOut } from "../firebase";
 import { Avatar } from "@mui/material";
 
 const Top = () => {
@@ -8,16 +8,19 @@ const Top = () => {
   //   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
 
   return (
-    <div className="bg-blue-500 p-3 flex items-center justify-between rounded">
+    <div className="bg-blue-500 p-2 flex items-center justify-between ">
       <Link to={"/"}>
         <h2 className="text-white text-xl font-bold">title</h2>
       </Link>
       <div className="flex items-center space-x-2 ml-auto">
-        <Link to={"/mypage"} className="flex items-center space-x-2">
+        <Link
+          to={userName ? "/mypage" : "/login"}
+          className="flex items-center space-x-2"
+        >
           {userPhotoURL ? (
-            <img src={userPhotoURL} alt="" className="w-8 h-8 rounded-full" />
+            <img src={userPhotoURL} alt="" className="w-6 h-6 rounded-full" />
           ) : (
-            <Avatar variant="circular" className="w-8 h-8" />
+            <Avatar variant="circular" className="w-6 h-6" />
           )}
           <span className="text-white">{userName ? userName : "ゲスト"}</span>
         </Link>

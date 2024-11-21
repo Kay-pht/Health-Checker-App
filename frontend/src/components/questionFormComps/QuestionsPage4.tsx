@@ -1,17 +1,29 @@
 import { QuestionsProps } from "../../interfaces/interfaces";
 import { frequencyArray, queryArray_page4 } from "../../utils/queryData";
-import TopBar from "./TopBar";
+import { useRef } from "react";
+
+import TopBar from "./PercentBar";
+import { FocusNextInput } from "../../../helpers/Helpers";
 
 const QuestionsPage4: React.FC<QuestionsProps> = ({
   handleChange,
   answers,
 }) => {
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  FocusNextInput(answers, inputRefs, queryArray_page4);
+
   return (
     <div>
       <TopBar percent={60} />
       <div className="questionsWrapper">
         {queryArray_page4.map((query, index) => (
-          <div className="questionWrapper" key={query.key}>
+          <div
+            className={`questionWrapper transition-opacity duration-300 ${
+              answers[query.key] ? "opacity-50" : "opacity-100"
+            }`}
+            key={query.key}
+          >
             <h3>
               {index + 16}.{query.value}
             </h3>
@@ -33,6 +45,7 @@ const QuestionsPage4: React.FC<QuestionsProps> = ({
                       : false
                   }
                   required
+                  ref={(el) => (inputRefs.current[index] = el)}
                 />
                 <span>{freq.value}</span>
               </label>

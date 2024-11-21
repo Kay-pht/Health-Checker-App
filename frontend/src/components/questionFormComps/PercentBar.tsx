@@ -53,10 +53,9 @@ const TopBar: React.FC<TopBarProps> = ({ percent }) => {
         }}
       >
         <div
-          className="filler"
+          className="filler bg-blue-500"
           style={{
             width: `${percent}%`,
-            backgroundColor: "#33A474",
             position: "absolute",
             height: "100%",
           }}

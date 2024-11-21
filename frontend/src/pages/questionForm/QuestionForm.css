@@ -1,18 +1,3 @@
-.questionForm-wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.questionForm-wrapper h3 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
 .questionsWrapper {
   margin-bottom: 20px;
 }
@@ -29,48 +14,64 @@
   font-size: 20px;
   color: #555;
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .questionWrapper label {
   display: block;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 18px;
   color: #666;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .questionWrapper input[type="radio"] {
   margin-right: 10px;
 }
 
-.questionForm-wrapper .button-group {
+/* .questionForm-wrapper .button-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
-}
+} */
 
-.questionForm-wrapper .previous,
+/* .questionForm-wrapper .previous,
 .questionForm-wrapper .submit,
 .questionForm-wrapper .next {
-  width: 100px; /* Set a fixed width for all buttons */
+  width: 100px;
   text-align: center;
   align-items: center;
   justify-content: center;
   display: flex;
-}
-.questionForm-wrapper .submit {
-  background-color: #8e44ad; /* Elegant purple */
-  color: #ffffff; /* White text for contrast */
+} */
+/* .questionForm-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .questionForm-wrapper h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  } */
+/* .questionForm-wrapper .submit {
+  background-color: #8e44ad;
+  color: #ffffff; 
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-}
+} */
 
-.questionForm-wrapper .submit:hover {
-  background-color: #9b59b6; /* Slightly lighter purple for hover */
-  transform: scale(1.05); /* Slightly enlarge on hover for effect */
+/* .questionForm-wrapper .submit:hover {
+  background-color: #9b59b6;
+  transform: scale(1.05);
 }
 .questionForm-wrapper .next {
   margin-left: auto;
@@ -97,4 +98,4 @@
   margin-top: 20px;
   font-size: 18px;
   color: #333;
-}
+} */
