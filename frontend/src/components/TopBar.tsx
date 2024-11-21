@@ -5,7 +5,6 @@ import { Avatar } from "@mui/material";
 const Top = () => {
   const userName = auth.currentUser?.displayName;
   const userPhotoURL = auth.currentUser?.photoURL;
-  //   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
 
   return (
     <div className="bg-blue-500 p-2 flex items-center justify-between ">

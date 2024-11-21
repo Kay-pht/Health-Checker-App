@@ -3,9 +3,9 @@ export const frequencyArray = [
   { key: "f2", value: "週2～3日" },
   { key: "f3", value: "週4～5日" },
   { key: "f4", value: "ほぼ毎日" },
-];
+] as const;
 
-export const queryArray_page1 = [
+const queryArray_page1 = [
   {
     key: "q1",
     value: "白米、食パン、うどん、パスタなどの主食を食べますか？",
@@ -24,9 +24,9 @@ export const queryArray_page1 = [
     value: "牛乳、ヨーグルト、チーズ、バターなどの乳製品を摂取しますか？",
   },
   { key: "q5", value: "豆腐、納豆、味噌、豆乳などの大豆製品を摂取しますか？" },
-];
+] as const;
 
-export const queryArray_page2 = [
+const queryArray_page2 = [
   {
     key: "q6",
     value:
@@ -46,9 +46,9 @@ export const queryArray_page2 = [
     key: "q10",
     value: "サンマ、アジ、マグロ、カツオなどの青魚や脂肪の多い魚を食べますか？",
   },
-];
+] as const;
 
-export const queryArray_page3 = [
+const queryArray_page3 = [
   {
     key: "q11",
     value: "しらす、たらこ、イクラ、ホタテなどの魚介類加工品を食べますか？",
@@ -70,9 +70,9 @@ export const queryArray_page3 = [
     key: "q15",
     value: "にんじん、小松菜、パプリカ、ピーマンなどの緑黄色野菜を食べますか？",
   },
-];
+] as const;
 
-export const queryArray_page4 = [
+const queryArray_page4 = [
   {
     key: "q16",
     value:
@@ -93,9 +93,9 @@ export const queryArray_page4 = [
     value:
       "アボカド、ココナッツ、オリーブなど、不飽和脂肪酸を含む果物を食べますか？",
   },
-];
+] as const;
 
-export const queryArray_page5 = [
+const queryArray_page5 = [
   {
     key: "q21",
     value:
@@ -118,4 +118,12 @@ export const queryArray_page5 = [
     key: "q25",
     value: "こんにゃく、寒天、しらたきなどの低カロリー食材を食べますか？",
   },
+] as const;
+
+export const queryArrayPages = [
+  queryArray_page1,
+  queryArray_page2,
+  queryArray_page3,
+  queryArray_page4,
+  queryArray_page5,
 ];

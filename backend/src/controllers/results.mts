@@ -36,7 +36,6 @@ async function registerResult(
     score: answerByChatGPT.score,
   });
   const newResult = await result.save();
-  console.log("Data saved successfully");
 }
 
 export { getResultsByUserId, registerResult };

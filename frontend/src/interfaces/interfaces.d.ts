@@ -1,5 +1,5 @@
 export interface QuestionsProps {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  getAnswersFromEachPage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   answers: Record<string, null>;
 }
 
@@ -22,4 +22,28 @@ export interface ResultType {
 }
 export interface ResultProps {
   setDiagnosisResult: React.Dispatch<React.SetStateAction<ResultType | null>>;
+}
+
+export interface QuestionCompProps {
+  queryArray: { key: string; value: string }[];
+  answers: Record<string, null>;
+  getAnswersFromEachPage: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  page: number;
+}
+
+export interface FocusNextInputType {
+  answers: Record<string, null>;
+  inputRefs: React.MutableRefObject<(HTMLInputElement | null)[]>;
+  queryArray: {
+    key: string;
+    value: string;
+  }[];
+}
+
+export interface GetAnswersFromAIType {
+  e: React.FormEvent<HTMLFormElement>;
+  user: User | null | undefined;
+  answers: { [key: string]: string };
+  setDiagnosisResult: React.Dispatch<React.SetStateAction<ResultType | null>>;
+  navigate: NavigateFunction;
 }

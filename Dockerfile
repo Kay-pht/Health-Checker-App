@@ -1,17 +1,21 @@
 # ベースイメージとしてNode.jsを使用
 FROM node:20.18.0 AS build
 
+# ルートディレクトリに移動
+WORKDIR /app
+COPY package-lock.json ./
+
 # フロントエンドのビルド
 WORKDIR /app/frontend
-COPY frontend/package.json frontend/package-lock.json ./
-RUN npm install
+COPY frontend/package.json ./
+RUN npm install --package-lock-only
 COPY frontend ./
 RUN npm run build
 
 # バックエンドのビルド
 WORKDIR /app/backend
-COPY backend/package.json backend/package-lock.json ./
-RUN npm install
+COPY backend/package.json ./
+RUN npm install --package-lock-only
 COPY backend ./
 RUN npm run build
 

@@ -10,5 +10,9 @@
   "devDependencies": {
     "concurrently": "^7.0.0",
     "serve": "^14.2.4"
-  }
+  },
+  "workspaces": [
+    "packages/frontend",
+    "packages/backend"
+  ]
 }

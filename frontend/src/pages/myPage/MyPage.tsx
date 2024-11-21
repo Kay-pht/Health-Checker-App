@@ -1,5 +1,4 @@
 import useSWR from "swr";
-import axios from "axios";
 import { DBResultType } from "../../interfaces/interfaces";
 import Top from "../../components/TopBar";
 import { Box, CircularProgress } from "@mui/material";
@@ -14,12 +13,18 @@ const MyPage = () => {
     try {
       // トークンをヘッダーに載せてバックエンドに送付
       // レスとしてこれまでの診断データ(from DB)を送ってもらう
-      const response = await axios.get(url, {
+      const response = await fetch(url, {
+        method: "GET",
         headers: {
           Authorization: `Bearer:${token}`,
+          "Content-Type": "application/json",
         },
       });
-      return response.data;
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server");
+      }
+      const responseData = await response.json();
+      return responseData;
     } catch (error) {
       console.error("Error fetching data:", error);
       throw error;
