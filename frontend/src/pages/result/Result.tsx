@@ -1,4 +1,4 @@
-import { ResultType } from "../../interfaces/interfaces";
+import type { ResultType } from "../../interfaces/interfaces.d.ts";
 import Top from "../../components/TopBar";
 import { Box, CircularProgress } from "@mui/material";
 

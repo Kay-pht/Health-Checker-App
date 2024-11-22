@@ -3,7 +3,7 @@ import "./Register.css";
 import { useForm } from "react-hook-form";
 import { registerValidationSchema } from "../../utils/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserAuth } from "../../interfaces/interfaces";
+import type { UserAuth } from "../../interfaces/interfaces.d.ts";
 import { logInWithAnonymous, signUpWithEmailAndPassword } from "../../firebase";
 import { Link } from "react-router-dom";
 import LogInWithGoogleButton from "../../components/LogInWithGoogleButton";

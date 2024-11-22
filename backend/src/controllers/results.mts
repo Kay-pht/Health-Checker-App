@@ -1,8 +1,8 @@
 import { Response } from "express";
-import {
+import type {
   answerByChatGPTType,
   CustomAuthRequest,
-} from "../interfaces/interfaces";
+} from "../interfaces/interfaces.d.ts";
 import Result from "../models/resultSchema.mjs";
 
 // 結果をMongoDBから取得(マイページ表示用)

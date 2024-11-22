@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import "./QuestionForm.css";
-import { ResultProps } from "../../interfaces/interfaces";
+import type { ResultProps } from "../../interfaces/interfaces.d.ts";
 import { useNavigate } from "react-router-dom";
 import Top from "../../components/TopBar";
 import QuestionComp from "../../components/questionFormComps/QuestionComp";

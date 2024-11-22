@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import admin from "firebase-admin";
-import { CustomAuthRequest } from "../interfaces/interfaces";
+import type { CustomAuthRequest } from "../interfaces/interfaces.d.ts";
 
 const serviceAccountKey = process.env.SERVICE_ACCOUNT_KEY;
 if (!serviceAccountKey) {

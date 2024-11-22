@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { DBResultType } from "../../interfaces/interfaces";
+import type { DBResultType } from "../../interfaces/interfaces.d.ts";
 import Top from "../../components/TopBar";
 import { Box, CircularProgress } from "@mui/material";
 

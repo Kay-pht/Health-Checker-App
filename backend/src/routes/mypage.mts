@@ -1,6 +1,6 @@
 import express, { Response } from "express";
 import { authenticate } from "../middlewares/authenticate.mjs";
-import { CustomAuthRequest } from "../interfaces/interfaces";
+import type { CustomAuthRequest } from "../interfaces/interfaces.d.ts";
 import { getResultsByUserId } from "../controllers/results.mjs";
 
 const router = express.Router();

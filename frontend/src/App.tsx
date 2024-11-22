@@ -13,7 +13,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
 import Result from "./pages/result/Result";
 import { useState } from "react";
-import { ResultType } from "./interfaces/interfaces";
+import type { ResultType } from "./interfaces/interfaces.d.ts";
 import MyPage from "./pages/myPage/MyPage";
 import LandingPage from "./pages/LP/LandingPage";
 

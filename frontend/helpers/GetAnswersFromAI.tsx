@@ -1,4 +1,4 @@
-import { GetAnswersFromAIType } from "../src/interfaces/interfaces";
+import type { GetAnswersFromAIType } from "../src/interfaces/interfaces.d.ts";
 import { getToken } from "../src/firebase";
 
 //回答をバックエンドに投げて、AIによる診断結果(レス)を表示する関数

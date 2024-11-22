@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { forgetValidationSchema } from "../../utils/validationSchema";
-import { UserAuth } from "../../interfaces/interfaces";
+import type { UserAuth } from "../../interfaces/interfaces.d.ts";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, submitPasswordResetEmail } from "../../firebase";
 // import SignOutButton from "../../component/SignOutButton";

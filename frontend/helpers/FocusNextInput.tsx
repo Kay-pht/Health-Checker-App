@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { FocusNextInputType } from "../src/interfaces/interfaces";
+import type { FocusNextInputType } from "../src/interfaces/interfaces.d.ts";
 
 // 回答後、未回答の質問にフォーカスをセットする関数
 const FocusNextInput = ({

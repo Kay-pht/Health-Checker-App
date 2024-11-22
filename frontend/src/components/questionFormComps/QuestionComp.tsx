@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { frequencyArray } from "../../utils/queryData";
 import FocusNextInput from "../../../helpers/FocusNextInput";
-import { QuestionCompProps } from "../../interfaces/interfaces";
+import type { QuestionCompProps } from "../../interfaces/interfaces.d.ts";
 
 const QuestionComp = ({
   queryArray,

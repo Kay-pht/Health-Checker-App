@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "../../utils/validationSchema";
-import { UserAuth } from "../../interfaces/interfaces";
+import type { UserAuth } from "../../interfaces/interfaces.d.ts";
 import { Link } from "react-router-dom";
 import LogInWithGoogleButton from "../../components/LogInWithGoogleButton";
 import { logInWithAnonymous, logInWithEmailAndPassword } from "../../firebase";

@@ -2,10 +2,10 @@ import express, { Response } from "express";
 import OpenAI from "openai";
 import prompt from "../helpers/prompt.mjs";
 import { authenticate } from "../middlewares/authenticate.mjs";
-import {
+import type {
   answerByChatGPTType,
   CustomAuthRequest,
-} from "../interfaces/interfaces";
+} from "../interfaces/interfaces.d.ts";
 import { registerResult } from "../controllers/results.mjs";
 
 const router = express.Router();
