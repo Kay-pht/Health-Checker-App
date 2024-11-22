@@ -7,11 +7,12 @@ import type {
   CustomAuthRequest,
 } from "../interfaces/interfaces.d.ts";
 import { registerResult } from "../controllers/results.mjs";
+import configEnv from "../configEnv.js";
 
 const router = express.Router();
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: configEnv.openaiApiKey,
 });
 
 // フロントから回答を受け取る→トークン検証→ChatGPTに回答を投げる→AIの診断結果をDB登録→userに結果返却

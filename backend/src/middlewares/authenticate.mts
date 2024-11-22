@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import admin from "firebase-admin";
 import type { CustomAuthRequest } from "../interfaces/interfaces.d.ts";
+import configEnv from "../configEnv.js";
 
-const serviceAccountKey = process.env.SERVICE_ACCOUNT_KEY;
+const { serviceAccountKey } = configEnv;
 if (!serviceAccountKey) {
   throw new Error(
     "Service account key is not defined in the environment variables."

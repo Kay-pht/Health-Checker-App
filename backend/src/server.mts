@@ -2,22 +2,11 @@ import express, { NextFunction, Request, Response } from "express";
 import completionRouter from "./routes/completion.mjs";
 import mypageRouter from "./routes/mypage.mjs";
 import "./helpers/db.mjs";
-import cors from "cors";
-import path from "path";
+import configEnv from "./configEnv.js";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const { port } = configEnv;
 
-// // CORSを許可する
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true,
-//   })
-// );
-
-// 本番環境での静的ファイルの提供
 app.use(express.static("/app/dist/frontend"));
 
 app.use(express.json());
@@ -45,5 +34,3 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.listen(Number(port), () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
-
-
