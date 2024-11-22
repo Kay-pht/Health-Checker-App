@@ -1,5 +1,4 @@
 import express, { Response } from "express";
-import env from "dotenv";
 import { authenticate } from "../middlewares/authenticate.mjs";
 import { CustomAuthRequest } from "../interfaces/interfaces";
 import { getResultsByUserId } from "../controllers/results.mjs";

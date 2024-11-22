@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import env from "dotenv";
-env.config();
 
 // Mongooseを使ってDB接続する
 mongoose.set("strictQuery", true);

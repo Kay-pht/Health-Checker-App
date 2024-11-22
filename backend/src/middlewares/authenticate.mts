@@ -1,11 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import admin from "firebase-admin";
-import * as dotenv from "dotenv";
-import * as path from "path";
-import { promises as fs } from "fs";
 import { CustomAuthRequest } from "../interfaces/interfaces";
 
-dotenv.config();
 const serviceAccountKey = process.env.SERVICE_ACCOUNT_KEY;
 if (!serviceAccountKey) {
   throw new Error(

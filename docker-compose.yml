@@ -11,6 +11,8 @@ services:
     command: npm run dev --prefix /app/frontend
     depends_on:
       - backend
+    env_file:
+      - ./frontend/.env
 
   backend:
     build:
@@ -19,13 +21,11 @@ services:
       target: production
     ports:
       - "3000:3000"
-    environment:
-      - MONGO_URI=${MONGO_URI}
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - SERVICE_ACCOUNT_KEY=${SERVICE_ACCOUNT_KEY}
     command: node /app/dist/backend/server.mjs
     depends_on:
       - mongo
+    env_file:
+      - ./backend/.env
 
   mongo:
     image: mongo:latest

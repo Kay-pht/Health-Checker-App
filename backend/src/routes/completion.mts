@@ -1,6 +1,5 @@
 import express, { Response } from "express";
 import OpenAI from "openai";
-import env from "dotenv";
 import prompt from "../helpers/prompt.mjs";
 import { authenticate } from "../middlewares/authenticate.mjs";
 import {
@@ -11,7 +10,6 @@ import { registerResult } from "../controllers/results.mjs";
 
 const router = express.Router();
 
-env.config();
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
