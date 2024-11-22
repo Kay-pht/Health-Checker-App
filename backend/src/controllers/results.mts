@@ -4,23 +4,24 @@ import type {
   CustomAuthRequest,
 } from "../interfaces/interfaces.d.ts";
 import Result from "../models/resultSchema.mjs";
+import { resourceLimits } from "worker_threads";
 
 // 結果をMongoDBから取得(マイページ表示用)
-async function getResultsByUserId(req: CustomAuthRequest, res: Response) {
-  const results = await Result.find({ userId: req.userId }).sort({
-    createdAt: -1,
-  });
-  if (results === null) {
-    return res.status(404).json({ msg: "Result Not Found" });
+async function getResultsByUserId(req: CustomAuthRequest) {
+  try {
+    const results = await Result.find({ userId: req.userId }).sort({
+      createdAt: -1,
+    });
+    return results;
+  } catch (error) {
+    console.error("Failed to get results by user ID", error);
+    throw new Error("Failed to fetch results");
   }
-
-  return res.json(results);
 }
 
 //結果のDB登録(AIからの回答を返却するとき)
 async function registerResult(
   req: CustomAuthRequest,
-  res: Response,
   answerByChatGPT: answerByChatGPTType
 ) {
   //   const errors = validationResult(req);

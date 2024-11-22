@@ -7,7 +7,7 @@ import type {
   CustomAuthRequest,
 } from "../interfaces/interfaces.d.ts";
 import { registerResult } from "../controllers/results.mjs";
-import configEnv from "../configEnv.js";
+import configEnv from "../configEnv.mjs";
 
 const router = express.Router();
 
@@ -39,7 +39,7 @@ router.post(
       // AIからの回答をMongoDBに登録してクライアントに返却
       if (completion && responseByAI) {
         const answerByChatGPT: answerByChatGPTType = JSON.parse(responseByAI);
-        registerResult(req, res, answerByChatGPT);
+        registerResult(req, answerByChatGPT);
         res.json(answerByChatGPT);
       } else {
         res.status(400).json({ error: "Can't parse response from OpenAI" });

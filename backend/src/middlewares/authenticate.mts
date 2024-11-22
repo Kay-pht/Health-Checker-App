@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import admin from "firebase-admin";
 import type { CustomAuthRequest } from "../interfaces/interfaces.d.ts";
-import configEnv from "../configEnv.js";
+import configEnv from "../configEnv.mjs";
 
 const { serviceAccountKey } = configEnv;
 if (!serviceAccountKey) {

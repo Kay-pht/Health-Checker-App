@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import completionRouter from "./routes/completion.mjs";
 import mypageRouter from "./routes/mypage.mjs";
 import "./helpers/db.mjs";
-import configEnv from "./configEnv.js";
+import configEnv from "./configEnv.mjs";
 
 const app = express();
 const { port } = configEnv;
