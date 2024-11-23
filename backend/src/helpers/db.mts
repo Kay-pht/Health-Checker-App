@@ -1,6 +1,9 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import configEnv from "../configEnv.mjs";
-mongoose.set("strictQuery", true);
+import { MongoClient } from "mongodb";
+import { Collection } from "mongodb";
+
+// mongoose.set("strictQuery", true);
 
 const { mongoUri } = configEnv;
 
@@ -8,11 +11,21 @@ if (!mongoUri) {
   throw new Error("MONGO_URI is not defined in the environment variables");
 }
 
-// Mongooseを使ってDB接続する
-mongoose
-  .connect(mongoUri)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => {
-    console.error("Failed to connect to MongoDB:", err);
-    process.exit(1); // Stop the server if connection fails
-  });
+// MongoDBの公式SDKを使ってDB接続する
+const client = new MongoClient(mongoUri);
+let resultsCollection: Collection;
+
+async function connectToDatabase() {
+  try {
+    await client.connect();
+    const db = client.db("food_health_check");
+    resultsCollection = db.collection("results");
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("Failed to connect to MongoDB", error);
+    process.exit(1);
+  }
+}
+
+connectToDatabase();
+export { resultsCollection };

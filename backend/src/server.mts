@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
-import completionRouter from "./routes/completion.mjs";
+import completionRouter from "./routes/chatCompletion.mjs";
 import mypageRouter from "./routes/mypage.mjs";
 import "./helpers/db.mjs";
 import configEnv from "./configEnv.mjs";

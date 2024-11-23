@@ -1,17 +1,27 @@
-import { Response } from "express";
+import { resultsCollection } from "../helpers/db.mjs";
 import type {
   answerByChatGPTType,
   CustomAuthRequest,
-} from "../interfaces/interfaces.d.ts";
-import Result from "../models/resultSchema.mjs";
-import { resourceLimits } from "worker_threads";
+} from "../interfaces/interfaces.js";
+// import Result from "../models/resultSchema.mjs";
+
+interface Result {
+  userId?: string;
+  recommendedFoods: string[];
+  missingNutrients: string[];
+  score: number;
+  createdAt: Date;
+}
 
 // 結果をMongoDBから取得(マイページ表示用)
 async function getResultsByUserId(req: CustomAuthRequest) {
   try {
-    const results = await Result.find({ userId: req.userId }).sort({
-      createdAt: -1,
-    });
+    const results = await resultsCollection
+      .find({ userId: req.userId })
+      .sort({
+        createdAt: -1,
+      })
+      .toArray();
     return results;
   } catch (error) {
     console.error("Failed to get results by user ID", error);
@@ -29,14 +39,20 @@ async function registerResult(
   //     const errs = errors.array();
   //     return res.status(400).json({ errors: errs });
   //   }
-
-  const result = new Result({
+  const timestamp = new Date();
+  const result: Result = {
     userId: req.userId,
     recommendedFoods: answerByChatGPT.recommendedFoods,
     missingNutrients: answerByChatGPT.missingNutrients,
     score: answerByChatGPT.score,
-  });
-  const newResult = await result.save();
+    createdAt: timestamp,
+  };
+  try {
+    await resultsCollection.insertOne(result);
+  } catch (error) {
+    console.error("Failed to register result", error);
+    throw new Error("Failed to save result");
+  }
 }
 
 export { getResultsByUserId, registerResult };

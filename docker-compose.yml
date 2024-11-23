@@ -21,7 +21,9 @@ services:
       target: production
     ports:
       - "3000:3000"
-    command: node /app/dist/backend/server.mjs
+    volumes:
+      - ./backend:/app/backend
+    command: sh -c "tsc --watch & npx nodemon /app/dist/backend/server.mjs"
     depends_on:
       - mongo
     env_file:

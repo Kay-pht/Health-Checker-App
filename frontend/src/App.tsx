@@ -25,49 +25,51 @@ const App = () => {
     null
   );
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
 
-        <Route
-          path="/login"
-          element={user ? <Navigate to="/questionnaire" /> : <Login />}
-        />
-        <Route
-          path="/register"
-          element={user ? <Navigate to="/questionnaire" /> : <Register />}
-        />
-        <Route
-          path="/questionnaire"
-          element={
-            user ? (
-              <QuestionForm setDiagnosisResult={setDiagnosisResult} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/result"
-          element={
-            user ? (
-              <Result result={diagnosisResult} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/mypage"
-          element={user ? <MyPage /> : <Navigate to="/login" />}
-        />
-        <Route path="/forget" element={<ForgetPassword />} />
+          <Route
+            path="/login"
+            element={user ? <Navigate to="/questionnaire" /> : <Login />}
+          />
+          <Route
+            path="/register"
+            element={user ? <Navigate to="/questionnaire" /> : <Register />}
+          />
+          <Route
+            path="/questionnaire"
+            element={
+              user ? (
+                <QuestionForm setDiagnosisResult={setDiagnosisResult} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          <Route
+            path="/result"
+            element={
+              user ? (
+                <Result result={diagnosisResult} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          <Route
+            path="/mypage"
+            element={user ? <MyPage /> : <Navigate to="/login" />}
+          />
+          <Route path="/forget" element={<ForgetPassword />} />
 
-        {/* <Route path="/questionnaire" element={<QuestionForm />} /> */}
-        {/* <Route path="/login" element={<Login />} /> */}
-        {/* <Route path="/register" element={<Register />} /> */}
-      </Routes>
-    </Router>
+          {/* <Route path="/questionnaire" element={<QuestionForm />} /> */}
+          {/* <Route path="/login" element={<Login />} /> */}
+          {/* <Route path="/register" element={<Register />} /> */}
+        </Routes>
+      </Router>
+    </div>
   );
 };
 

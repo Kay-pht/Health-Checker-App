@@ -9,9 +9,11 @@ const Top = () => {
   return (
     <div className="bg-blue-500 p-2 flex items-center justify-between ">
       <Link to={"/"}>
-        <h2 className="text-white text-xl font-bold">title</h2>
+        <h2 className="text-white text-xl ml-3 font-extrabold">
+          FoodHealth.navi
+        </h2>
       </Link>
-      <div className="flex items-center space-x-2 ml-auto">
+      <div className="flex items-center space-x-2 font-semibold ml-auto">
         <Link
           to={userName ? "/mypage" : "/login"}
           className="flex items-center space-x-2"

@@ -13,7 +13,7 @@ const LogInWithGoogleButton = ({ register }: registerProps) => {
   return (
     <button
       onClick={signInWithGoogle}
-      className="w-full p-3 text-lg font-bold bg-red-500 text-white rounded mt-2 hover:bg-red-600 transition-colors"
+      className="w-full p-2 text-lg font-bold bg-red-500 text-white rounded mt-2 hover:bg-red-600 transition-colors"
     >
       {register ? "Googleで登録" : "Googleでログイン"}
     </button>

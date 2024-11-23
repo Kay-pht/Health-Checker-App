@@ -1,10 +1,10 @@
 import React from "react";
 
-interface TopBarProps {
+interface PercentBarProps {
   percent: number;
 }
 
-const TopBar: React.FC<TopBarProps> = ({ percent }) => {
+const PercentBar: React.FC<PercentBarProps> = ({ percent }) => {
   return (
     <div
       id="progress-wrapper"
@@ -65,4 +65,4 @@ const TopBar: React.FC<TopBarProps> = ({ percent }) => {
   );
 };
 
-export default TopBar;
+export default PercentBar;

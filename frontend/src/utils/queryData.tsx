@@ -1,5 +1,5 @@
 export const frequencyArray = [
-  { key: "f1", value: "ほとんど食べない" },
+  { key: "f1", value: "週0～1日" },
   { key: "f2", value: "週2～3日" },
   { key: "f3", value: "週4～5日" },
   { key: "f4", value: "ほぼ毎日" },
@@ -39,7 +39,7 @@ const queryArray_page2 = [
   },
   {
     key: "q8",
-    value: "鶏レバー、豚レバー、牛レバー、ハツなどの内臓肉を食べますか？",
+    value: "レバー、ハツなどの内臓肉を食べますか？",
   },
   { key: "q9", value: "サバ、サケ、イワシ、タラなどの魚を食べますか？" },
   {
@@ -103,8 +103,7 @@ const queryArray_page5 = [
   },
   {
     key: "q22",
-    value:
-      "くるみ、アーモンド、ピスタチオ、カシューナッツなどのナッツ類を食べますか？",
+    value: "くるみ、アーモンド、ピスタチオなどのナッツ類を食べますか？",
   },
   {
     key: "q23",

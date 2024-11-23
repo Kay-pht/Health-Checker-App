@@ -8,6 +8,7 @@ import Top from "../../components/TopBar";
 import QuestionComp from "../../components/questionFormComps/QuestionComp";
 import { queryArrayPages } from "../../utils/queryData";
 import getAnswersFromAI from "../../../helpers/GetAnswersFromAI";
+import PercentBar from "../../components/questionFormComps/PercentBar.tsx";
 
 // 質問フォームの親コンポーネント
 const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
@@ -43,15 +44,16 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
   return (
     <div>
       <Top />
-      <div className="max-w-4xl mx-auto p-5 bg-gray-100 rounded-lg shadow-md">
+      <div className="max-w-4xl mx-auto p-5 bg-gray-100 shadow-md">
         <form
           onSubmit={(e) =>
             getAnswersFromAI({ e, user, answers, setDiagnosisResult, navigate })
           }
         >
-          <h3 className="text-xl text-gray-800 mb-5">
+          <h3 className="text-xl text-gray-800 mb-5 font-semibold text-center">
             以下の食材をどのくらいの頻度で食べるか教えてください！
           </h3>
+          {page > 1 && <PercentBar percent={(page - 1) * 20} />}
           {
             //map関数でページ分け
             queryArrayPages.map(

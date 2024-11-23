@@ -8,6 +8,11 @@ export interface UserAuth {
   password: string;
 }
 
+export interface RegisterFormValues extends UserAuth {
+  name: string;
+  confirm: string;
+}
+
 export interface DBResultType {
   missingNutrients: string[];
   recommendedFoods: string[];
@@ -33,7 +38,7 @@ export interface QuestionCompProps {
 
 export interface FocusNextInputType {
   answers: Record<string, null>;
-  inputRefs: React.MutableRefObject<(HTMLInputElement | null)[]>;
+  inputRefs: React.MutableRefObject<(HTMLButtonElement | null)[]>;
   queryArray: {
     key: string;
     value: string;

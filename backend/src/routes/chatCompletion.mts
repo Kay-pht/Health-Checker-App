@@ -5,8 +5,8 @@ import { authenticate } from "../middlewares/authenticate.mjs";
 import type {
   answerByChatGPTType,
   CustomAuthRequest,
-} from "../interfaces/interfaces.d.ts";
-import { registerResult } from "../controllers/results.mjs";
+} from "../interfaces/interfaces.js";
+import { registerResult } from "../controllers/dbControllers.mjs";
 import configEnv from "../configEnv.mjs";
 
 const router = express.Router();
