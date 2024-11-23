@@ -33,7 +33,7 @@ const MyPage = () => {
 
   const { data, error } = useSWR("/api/mypage", fetcher);
 
-  if (error) return <div>failed to load</div>;
+  if (error) return <div>Sorry...Please Log in again</div>;
 
   return (
     <div>

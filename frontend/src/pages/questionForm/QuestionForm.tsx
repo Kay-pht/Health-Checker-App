@@ -9,6 +9,9 @@ import QuestionComp from "../../components/questionFormComps/QuestionComp";
 import { queryArrayPages } from "../../utils/queryData";
 import getAnswersFromAI from "../../../helpers/GetAnswersFromAI";
 import PercentBar from "../../components/questionFormComps/PercentBar.tsx";
+import KeyboardDoubleArrowLeftRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
+import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 // 質問フォームの親コンポーネント
 const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
@@ -50,7 +53,7 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
             getAnswersFromAI({ e, user, answers, setDiagnosisResult, navigate })
           }
         >
-          <h3 className="text-xl text-gray-800 mb-5 font-semibold text-center">
+          <h3 className="text-xl text-gray-600 mb-5 font-semibold text-center">
             以下の食材をどのくらいの頻度で食べるか教えてください！
           </h3>
           {page > 1 && <PercentBar percent={(page - 1) * 20} />}
@@ -75,7 +78,8 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
                 className="w-24 text-center bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition-transform transform hover:scale-105"
                 onClick={pageDownHandler}
               >
-                previous
+                {/* previous */}
+                <KeyboardDoubleArrowLeftRoundedIcon />
               </button>
             )}
             {page === 5 && (
@@ -83,7 +87,7 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
                 className="w-24 text-center bg-green-500 text-white font-bold py-2 rounded hover:bg-green-600 transition-transform transform hover:scale-105"
                 type="submit"
               >
-                Submit
+                send <SendRoundedIcon fontSize="inherit" />
               </button>
             )}
             {page !== 5 && (
@@ -91,7 +95,8 @@ const QuestionForm = ({ setDiagnosisResult }: ResultProps) => {
                 className="w-24 text-center bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition-transform transform hover:scale-105 ml-auto"
                 onClick={pageUpHandler}
               >
-                next
+                {/* next */}
+                <KeyboardDoubleArrowRightRoundedIcon />
               </button>
             )}
           </div>

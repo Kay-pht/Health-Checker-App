@@ -49,6 +49,6 @@ export const authenticate = async (
     next();
   } catch (error) {
     console.error("Error verifying ID token:", error);
-    throw new Error("Invalid token");
+    res.status(403).json({ error: "Invalid token" });
   }
 };

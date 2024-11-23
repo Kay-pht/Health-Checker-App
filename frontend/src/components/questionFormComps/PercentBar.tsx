@@ -38,7 +38,7 @@ const PercentBar: React.FC<PercentBarProps> = ({ percent }) => {
         {percent}%
       </div>
       <div
-        className="progress-bar"
+        className="progress-bar rounded-lg"
         style={{
           backgroundColor: "#DDDDDD",
           textDecoration: "none solid rgb(52,60,75)",
@@ -53,7 +53,7 @@ const PercentBar: React.FC<PercentBarProps> = ({ percent }) => {
         }}
       >
         <div
-          className="filler bg-blue-500"
+          className="filler bg-blue-500 rounded-lg"
           style={{
             width: `${percent}%`,
             position: "absolute",

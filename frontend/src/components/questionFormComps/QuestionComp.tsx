@@ -14,17 +14,17 @@ const QuestionComp = ({
 
   FocusNextInput({ answers, inputRefs, queryArray });
   return (
-    <div className="mb-5">
+    <div className="mb-5 ">
       {
         // map関数で質問ごとに表示
         queryArray.map((query, index) => (
           <div
-            className={`transition-opacity duration-300 font-semibold bg-white rounded-lg shadow-md p-4 mb-4 ${
+            className={`transition-opacity duration-300 font-semibold bg-white rounded-lg shadow-md p-4 mb-8 ${
               answers[query.key] ? "opacity-50" : "opacity-100"
             }`}
             key={query.key}
           >
-            <h3 className="text-lg text-gray-700 mt-1 mb-2 ml-2 text-center">
+            <h3 className="text-xl text-gray-600 mt-3 pb-4 ml-2 text-center">
               {index + page * 5 - 4}.{query.value}
             </h3>
             <div className="flex justify-center space-x-10 mt-5 mb-5">
@@ -59,6 +59,13 @@ const QuestionComp = ({
                         label={freq.value}
                         labelPlacement="bottom"
                         className="block mb-2 text-sm text-gray-600 cursor-pointer font-bold"
+                        sx={{
+                          // 修正箇所
+                          "& .MuiFormControlLabel-label": {
+                            fontSize: "1rem",
+                            fontWeight: "bold",
+                          },
+                        }}
                       />
                     </div>
                   </div>

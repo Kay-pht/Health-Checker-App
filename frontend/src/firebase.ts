@@ -29,6 +29,15 @@ export const getToken = async (user: User) => {
     console.error("Error getting token:", error);
   }
 };
+//トークンを取得して、sessionStorageに保存する用の関数
+export const saveTokenInStorage = async (user: User) => {
+  const token = await getToken(user);
+  if (token) {
+    sessionStorage.setItem("authToken", token);
+  } else {
+    throw new Error("User is not authenticated");
+  }
+};
 
 // メアド&パスワードでアカウント新規作成する用の関数
 export const signUpWithEmailAndPassword = async (
@@ -46,7 +55,7 @@ export const signUpWithEmailAndPassword = async (
     await updateProfile(user, {
       displayName: name,
     });
-    await getToken(user);
+    await saveTokenInStorage(user);
     await sendEmailVerification(user);
 
     console.log("User signed up successfully with name!");
@@ -73,7 +82,7 @@ export const logInWithEmailAndPassword = async (
     );
 
     const user = userCredential.user;
-    await getToken(user);
+    saveTokenInStorage(user);
 
     console.log("User logged in successfully!");
     return user;
@@ -90,7 +99,7 @@ export const logInWithAnonymous = async () => {
   try {
     const userCredential = await signInAnonymously(auth);
     const user = userCredential.user;
-    await getToken(user);
+    await saveTokenInStorage(user);
     console.log("Anonymous user logged in successfully!");
 
     return user;

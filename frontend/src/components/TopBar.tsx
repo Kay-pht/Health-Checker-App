@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { auth, logOut } from "../firebase";
 import { Avatar } from "@mui/material";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Top = () => {
-  const userName = auth.currentUser?.displayName;
-  const userPhotoURL = auth.currentUser?.photoURL;
+  const [user] = useAuthState(auth);
+  const userName = user?.displayName;
+  const userPhotoURL = user?.photoURL;
 
   return (
     <div className="bg-blue-500 p-2 flex items-center justify-between ">
@@ -13,22 +15,25 @@ const Top = () => {
           FoodHealth.navi
         </h2>
       </Link>
-      <div className="flex items-center space-x-2 font-semibold ml-auto">
-        <Link
-          to={userName ? "/mypage" : "/login"}
-          className="flex items-center space-x-2"
-        >
-          {userPhotoURL ? (
-            <img src={userPhotoURL} alt="" className="w-6 h-6 rounded-full" />
-          ) : (
-            <Avatar variant="circular" className="w-6 h-6" />
-          )}
-          <span className="text-white">{userName ? userName : "ゲスト"}</span>
-        </Link>
-        <button onClick={logOut} className=" text-white px-4 py-2 rounded">
-          ログアウト
-        </button>
-      </div>
+
+      {user && (
+        <div className="flex items-center space-x-2 font-semibold ml-auto">
+          <Link
+            to={userName ? "/mypage" : "/login"}
+            className="flex items-center space-x-2"
+          >
+            {userPhotoURL ? (
+              <img src={userPhotoURL} alt="" className="w-6 h-6 rounded-full" />
+            ) : (
+              <Avatar variant="circular" className="w-6 h-6" />
+            )}
+            <span className="text-white">{userName ? userName : "ゲスト"}</span>
+          </Link>
+          <button onClick={logOut} className=" text-white px-4 py-2 rounded">
+            ログアウト
+          </button>
+        </div>
+      )}
     </div>
   );
 };

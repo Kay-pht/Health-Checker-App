@@ -52,3 +52,7 @@ export interface GetAnswersFromAIType {
   setDiagnosisResult: React.Dispatch<React.SetStateAction<ResultType | null>>;
   navigate: NavigateFunction;
 }
+
+export interface ResultPageProps {
+  result: ResultType | null;
+}

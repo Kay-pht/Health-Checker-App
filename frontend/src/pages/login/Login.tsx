@@ -40,7 +40,7 @@ const Login = () => {
               <TextField
                 type="email"
                 id="email"
-                label="email"
+                label="Eメール"
                 {...register("email")}
                 className="w-full p-2 border border-gray-300 rounded mb-1"
                 autoFocus
@@ -57,7 +57,7 @@ const Login = () => {
               <TextField
                 type="password"
                 id="password"
-                label="Password"
+                label="パスワード"
                 {...register("password")}
                 className="w-full p-2 border border-gray-300 rounded mb-1"
                 autoComplete="current-password"

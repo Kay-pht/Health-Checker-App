@@ -1,12 +1,9 @@
-import type { ResultType } from "../../interfaces/interfaces.d.ts";
 import Top from "../../components/TopBar";
 import { Box, CircularProgress } from "@mui/material";
+import { ResultPageProps } from "../../interfaces/interfaces";
 
-interface ResultProps {
-  result: ResultType | null;
-}
 // 診断結果ページ
-const Result = ({ result }: ResultProps) => {
+const Result = ({ result }: ResultPageProps) => {
   return (
     <div>
       <Top />

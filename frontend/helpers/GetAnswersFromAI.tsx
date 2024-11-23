@@ -1,5 +1,4 @@
 import type { GetAnswersFromAIType } from "../src/interfaces/interfaces.d.ts";
-import { getToken } from "../src/firebase";
 
 //回答をバックエンドに投げて、AIによる診断結果(レス)を表示する関数
 const GetAnswersFromAI = async ({
@@ -16,13 +15,10 @@ const GetAnswersFromAI = async ({
     alert("Please sign in to proceed");
     return;
   }
-  const token = await getToken(user);
+  const token = sessionStorage.getItem("authToken");
   if (!token) {
     throw new Error("User is not authenticated");
   }
-  // sessionStorageにトークンを保存
-  sessionStorage.setItem("authToken", token);
-
   // ヘッダーにトークンを付与。バックエンドでの検証用
   try {
     navigate("/result");
