@@ -29,7 +29,6 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-
           <Route
             path="/login"
             element={user ? <Navigate to="/questionnaire" /> : <Login />}
@@ -63,10 +62,6 @@ const App = () => {
             element={user ? <MyPage /> : <Navigate to="/login" />}
           />
           <Route path="/forget" element={<ForgetPassword />} />
-
-          {/* <Route path="/questionnaire" element={<QuestionForm />} /> */}
-          {/* <Route path="/login" element={<Login />} /> */}
-          {/* <Route path="/register" element={<Register />} /> */}
         </Routes>
       </Router>
     </div>
