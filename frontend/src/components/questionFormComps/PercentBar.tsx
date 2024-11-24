@@ -1,8 +1,5 @@
 import React from "react";
-
-interface PercentBarProps {
-  percent: number;
-}
+import { PercentBarProps } from "../../interfaces/interfaces";
 
 const PercentBar: React.FC<PercentBarProps> = ({ percent }) => {
   return (

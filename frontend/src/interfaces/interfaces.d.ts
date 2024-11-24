@@ -3,6 +3,9 @@ export interface QuestionsProps {
   answers: Record<string, null>;
 }
 
+export interface ForgetFormValues {
+  email: string;
+}
 export interface UserAuth {
   email: string;
   password: string;
@@ -47,12 +50,27 @@ export interface FocusNextInputType {
 
 export interface FetchAnswersFromAIType {
   e: React.FormEvent<HTMLFormElement>;
-  user: User | null | undefined;
   userAnswers: { [key: string]: string };
   setDiagnosisResult: React.Dispatch<React.SetStateAction<ResultType | null>>;
-  navigate: NavigateFunction;
 }
 
 export interface ResultPageProps {
   result: ResultType | null;
+}
+
+export interface SendAnswersType {
+  token: string;
+  submittedAnswer: {
+    content: {
+      [key: string]: string;
+    };
+  };
+}
+
+export interface PercentBarProps {
+  percent: number;
+}
+
+export interface registerProps {
+  register: boolean;
 }

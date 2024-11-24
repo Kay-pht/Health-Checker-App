@@ -1,9 +1,7 @@
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider, saveTokenInStorage } from "../firebase";
+import { auth, provider, saveTokenInStorage } from "../services/firebase";
+import { registerProps } from "../interfaces/interfaces";
 
-interface registerProps {
-  register: boolean; // registerはboolean型のプロパティ
-}
 const LogInWithGoogleButton = ({ register }: registerProps) => {
   const signInWithGoogle = async () => {
     const userCredential = await signInWithPopup(auth, provider);

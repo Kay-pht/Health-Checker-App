@@ -2,42 +2,22 @@ import useSWR from "swr";
 import type { DBResultType } from "../../interfaces/interfaces.d.ts";
 import { Box, CircularProgress } from "@mui/material";
 import TopBar from "../../components/TopBar.tsx";
+import fetchUserHistoryData from "../../services/fetchUserHistoryData.ts";
+import { logOut } from "../../services/firebase.ts";
 
 const MyPage = () => {
-  const fetchUserHistoryData = async (url: string) => {
-    // sessionStorageからトークンを取得
-    const token = sessionStorage.getItem("authToken");
-    if (!token) {
-      throw new Error("User is not authenticated");
-    }
-    try {
-      // トークンをヘッダーに載せてバックエンドに送付
-      // レスとしてこれまでの診断データ(from DB)を送ってもらう
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer:${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Failed to fetch data from the server");
-      }
-      const responseData = await response.json();
-      return responseData;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      throw error;
-    }
-  };
-
+  // 過去の診断データをバックエンドから受け取る
   const { data, error } = useSWR("/api/mypage", fetchUserHistoryData);
 
-  if (error) return <div>Sorry...Please Log in again</div>;
+  if (error) {
+    setInterval(() => {
+      logOut();
+    }, 5000); // エラーなら3秒後にログアウト
+    return <div>Sorry...Please Log in again</div>;
+  }
 
   return (
     <div>
-      import Top from "../../components/TopBar";
       <TopBar />
       <div className="p-6 bg-gray-100 min-h-screen">
         <h1 className="text-2xl font-bold mb-4">これまでの診断結果</h1>

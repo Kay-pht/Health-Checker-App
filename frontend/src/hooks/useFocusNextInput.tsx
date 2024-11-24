@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import type { FocusNextInputType } from "../src/interfaces/interfaces";
+import { FocusNextInputType } from "../interfaces/interfaces";
 
 // 回答後、未回答の質問にフォーカスをセットする関数
 const useFocusNextInput = ({
@@ -21,7 +21,7 @@ const useFocusNextInput = ({
     }
     // ここのエラーは看過OKか?
     //inputRefsとuserAnswersは同じところを参照しているので、両方を含めないほうが良さそう
-    //queryArrayはそもそも変更しない変数なので依存関係に含める必要がない
+    //foodQueryPageはそもそも変更しない変数なので依存関係に含める必要がない
   }, [userAnswers]);
 };
 

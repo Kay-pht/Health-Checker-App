@@ -6,7 +6,7 @@ import {
   // Navigate,
 } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./firebase";
+import { auth } from "./services/firebase.ts";
 import Result from "./pages/result/ResultPage.tsx";
 import { useState } from "react";
 import type { ResultType } from "./interfaces/interfaces.d.ts";

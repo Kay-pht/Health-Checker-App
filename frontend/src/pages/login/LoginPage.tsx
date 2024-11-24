@@ -1,6 +1,4 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "../../utils/validationSchema.ts";
 import type { UserAuth } from "../../interfaces/interfaces";
 import { Link } from "react-router-dom";
@@ -8,20 +6,19 @@ import LogInWithGoogleButton from "../../components/LogInWithGoogleButton.tsx";
 import {
   logInWithAnonymous,
   logInWithEmailAndPassword,
-} from "../../firebase.ts";
+} from "../../services/firebase.ts";
 import { Alert, TextField } from "@mui/material";
 import TopBar from "../../components/TopBar.tsx";
+import useFormValidation from "../../hooks/useFormValidation.tsx";
 
 // ログインページ
 const LoginPage = () => {
+  // フォームのバリデーションチェック
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserAuth>({
-    mode: "onChange",
-    resolver: zodResolver(loginValidationSchema),
-  });
+  } = useFormValidation<UserAuth>(loginValidationSchema);
 
   // 入力情報(メアド・パスワード)をfirebaseで確認
   const onSubmit = async (data: UserAuth) => {
@@ -32,10 +29,10 @@ const LoginPage = () => {
   return (
     <div>
       <TopBar />
-      <div className="flex flex-col items-center justify-center min-h-screen font-sans bg-gray-100">
+      <div className="flex flex-col text-gray-700 items-center justify-center min-h-screen font-sans bg-gray-100">
         <div className="bg-white p-8 pb-5 pt-3 m-10 rounded-lg shadow-md w-full max-w-lg">
           <h1 className="text-2xl font-bold text-center ">ログインする</h1>
-          <p className="text-sm text-center">
+          <p className="text-sm text-center mt-1">
             ログインするとこれまでの診断結果がチェックできます
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>

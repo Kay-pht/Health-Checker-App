@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { auth, logOut } from "../firebase";
+import { auth, logOut } from "../services/firebase";
 import { Avatar } from "@mui/material";
 import { useAuthState } from "react-firebase-hooks/auth";
 

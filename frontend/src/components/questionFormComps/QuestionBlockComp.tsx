@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { frequencyArray } from "../../utils/queryData.tsx";
-import FocusNextInput from "../../../hooks/useFocusNextInput.tsx";
 import type { QuestionCompProps } from "../../interfaces/interfaces.d.ts";
 import { FormControlLabel, Radio } from "@mui/material";
+import useFocusNextInput from "../../hooks/useFocusNextInput.tsx";
 
 const QuestionBlockComp = ({
   foodQueryPage,
@@ -12,7 +12,9 @@ const QuestionBlockComp = ({
 }: QuestionCompProps) => {
   const inputRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  FocusNextInput({ userAnswers, inputRefs, foodQueryPage });
+  // 回答後、未回答の問題にフォーカスするロジック
+  useFocusNextInput({ userAnswers, inputRefs, foodQueryPage });
+
   return (
     <div className="mb-5 ">
       {
@@ -60,7 +62,6 @@ const QuestionBlockComp = ({
                         labelPlacement="bottom"
                         className="block mb-2 text-sm text-gray-600 cursor-pointer font-bold"
                         sx={{
-                          // 修正箇所
                           "& .MuiFormControlLabel-label": {
                             fontSize: "1rem",
                             fontWeight: "bold",

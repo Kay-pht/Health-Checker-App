@@ -11,7 +11,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
-import { firebaseConfig } from "./config";
+import { firebaseConfig } from "../config/config";
 
 const app = initializeApp(firebaseConfig);
 
@@ -29,6 +29,7 @@ export const getToken = async (user: User) => {
     console.error("Error getting token:", error);
   }
 };
+
 //トークンを取得して、sessionStorageに保存する用の関数
 export const saveTokenInStorage = async (user: User) => {
   const token = await getToken(user);
@@ -37,6 +38,15 @@ export const saveTokenInStorage = async (user: User) => {
   } else {
     throw new Error("User is not authenticated");
   }
+};
+
+// sessionStorageからトークンを取得
+export const getStoredToken = () => {
+  const token = sessionStorage.getItem("authToken");
+  if (!token) {
+    throw new Error("User is not authenticated");
+  }
+  return token;
 };
 
 // メアド&パスワードでアカウント新規作成する用の関数

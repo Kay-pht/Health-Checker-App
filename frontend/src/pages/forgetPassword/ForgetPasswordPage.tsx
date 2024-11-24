@@ -1,28 +1,24 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { forgetValidationSchema } from "../../utils/validationSchema.ts";
-import type { UserAuth } from "../../interfaces/interfaces";
-import { submitPasswordResetEmail } from "../../firebase.ts";
+import type { ForgetFormValues } from "../../interfaces/interfaces";
+import { submitPasswordResetEmail } from "../../services/firebase.ts";
 // import SignOutButton from "../../component/SignOutButton";
 import { Link } from "react-router-dom";
 import { Alert, TextField } from "@mui/material";
 import TopBar from "../../components/TopBar.tsx";
+import useFormValidation from "../../hooks/useFormValidation.tsx";
+import { forgetValidationSchema } from "../../utils/validationSchema.ts";
 
 const ForgetPasswordPage = () => {
-  // ログインしていれば回答フォームへ接続
   const [message, setMessage] = useState("");
-
+  // フォームのバリデーションチェック
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserAuth>({
-    mode: "onChange",
-    resolver: zodResolver(forgetValidationSchema),
-  });
+  } = useFormValidation<ForgetFormValues>(forgetValidationSchema);
+
   // パスワードリセットメールを送信
-  const onSubmit = async (data: UserAuth) => {
+  const onSubmit = async (data: ForgetFormValues) => {
     await submitPasswordResetEmail(data.email);
     setMessage("パスワードリセットメールを送信しました。");
   };
@@ -30,7 +26,7 @@ const ForgetPasswordPage = () => {
   return (
     <div>
       <TopBar />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex flex-col text-gray-700 items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
           <h1 className="text-2xl font-bold mb-6 text-center">
             パスワードの再設定
