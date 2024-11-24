@@ -6,14 +6,14 @@ export default defineConfig({
   build: {
     outDir: "../dist/frontend", // ここが出力ディレクトリ
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://backend:3000",
-        changeOrigin: true,
-      },
-    },
-    host: true,
-    port: 5173,
-  },
+  // server: {
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://backend:3000",
+  //       changeOrigin: true,
+  //     },
+  //   },
+  //   host: true,
+  //   port: 5173,
+  // },
 });

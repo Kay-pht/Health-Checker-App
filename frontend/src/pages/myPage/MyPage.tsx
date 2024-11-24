@@ -67,11 +67,11 @@ const MyPage = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="text-gray-600 text-sm md:text-base font-light">
+              <tbody className="text-gray-500 text-sm md:text-base ">
                 {data.map((result: DBResultType, index: number) => (
                   <tr
                     key={index}
-                    className="border-b border-gray-200 hover:bg-gray-100"
+                    className="border-b border-gray-200 font-semibold hover:bg-gray-100"
                   >
                     <td className="py-2 md:py-3 px-2 md:px-6 text-left">
                       {index + 1}

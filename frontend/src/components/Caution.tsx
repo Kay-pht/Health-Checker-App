@@ -2,7 +2,7 @@ const Caution = () => {
   return (
     <div className="text-sm text-gray-800 mt-5 border-2 space-y-2">
       <div className="p-3">
-        <p className="mb-2">[注意事項]</p>
+        <p className="mb-2 font-bold text-base">[注意事項]</p>
         <div className="font-normal">
           <p className="font-bold">1. 正確性について</p>
           <p>
