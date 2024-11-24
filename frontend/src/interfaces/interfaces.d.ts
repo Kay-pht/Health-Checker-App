@@ -30,25 +30,25 @@ export interface ResultProps {
 }
 
 export interface QuestionCompProps {
-  queryArray: { key: string; value: string }[];
-  answers: Record<string, null>;
-  getAnswersFromEachPage: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  page: number;
+  foodQueryPage: { key: string; value: string }[];
+  userAnswers: Record<string, null>;
+  getAnswersInEachPage: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  currentPageNum: number;
 }
 
 export interface FocusNextInputType {
-  answers: Record<string, null>;
+  userAnswers: Record<string, null>;
   inputRefs: React.MutableRefObject<(HTMLButtonElement | null)[]>;
-  queryArray: {
+  foodQueryPage: {
     key: string;
     value: string;
   }[];
 }
 
-export interface GetAnswersFromAIType {
+export interface FetchAnswersFromAIType {
   e: React.FormEvent<HTMLFormElement>;
   user: User | null | undefined;
-  answers: { [key: string]: string };
+  userAnswers: { [key: string]: string };
   setDiagnosisResult: React.Dispatch<React.SetStateAction<ResultType | null>>;
   navigate: NavigateFunction;
 }

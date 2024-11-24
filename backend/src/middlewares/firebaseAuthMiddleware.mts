@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import admin from "firebase-admin";
-import type { CustomAuthRequest } from "../interfaces/interfaces.d.ts";
+import type { CustomAuthRequest } from "../interfaces/interfaces.js";
 import configEnv from "../configEnv.mjs";
 
 const { serviceAccountKey } = configEnv;
@@ -29,7 +29,8 @@ const initializeFirebaseAdmin = async () => {
 initializeFirebaseAdmin();
 
 // クライアントから送られてきたトークンの検証
-export const authenticate = async (
+// アプリケーション層とHTTP層の両方の処理を行っているので改善を要検討
+export const firebaseAuthMiddleware = async (
   req: CustomAuthRequest,
   res: Response,
   next: NextFunction

@@ -2,16 +2,8 @@ import { resultsCollection } from "../helpers/db.mjs";
 import type {
   answerByChatGPTType,
   CustomAuthRequest,
+  Result,
 } from "../interfaces/interfaces.js";
-// import Result from "../models/resultSchema.mjs";
-
-interface Result {
-  userId?: string;
-  recommendedFoods: string[];
-  missingNutrients: string[];
-  score: number;
-  createdAt: Date;
-}
 
 // 結果をMongoDBから取得(マイページ表示用)
 async function getResultsByUserId(req: CustomAuthRequest) {

@@ -1,15 +1,18 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { logInWithAnonymous, signUpWithEmailAndPassword } from "../../firebase";
-import LogInWithGoogleButton from "../../components/LogInWithGoogleButton";
+import {
+  logInWithAnonymous,
+  signUpWithEmailAndPassword,
+} from "../../firebase.ts";
+import LogInWithGoogleButton from "../../components/LogInWithGoogleButton.tsx";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { registerValidationSchema } from "../../utils/validationSchema";
+import { registerValidationSchema } from "../../utils/validationSchema.ts";
 import React from "react";
 import { Alert, TextField } from "@mui/material";
-import Top from "../../components/TopBar.tsx";
+import TopBar from "../../components/TopBar.tsx";
 import { RegisterFormValues } from "../../interfaces/interfaces";
 
-const Register = () => {
+const RegisterPage = () => {
   const {
     register,
     handleSubmit,
@@ -32,7 +35,7 @@ const Register = () => {
 
   return (
     <div>
-      <Top />
+      <TopBar />
       <div className="flex flex-col items-center justify-center min-h-screen font-sans bg-gray-100">
         <div className="bg-white p-8 pb-5 pt-3 m-10 rounded-lg shadow-md w-full max-w-lg">
           <h1 className="text-2xl font-bold mb-1 text-center">Sign Up Form</h1>
@@ -127,4 +130,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

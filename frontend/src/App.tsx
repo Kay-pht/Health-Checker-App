@@ -5,17 +5,17 @@ import {
   Navigate,
   // Navigate,
 } from "react-router-dom";
-import QuestionForm from "./pages/questionForm/QuestionForm";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
-import ForgetPassword from "./pages/forgetPassword/ForgetPassword";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
-import Result from "./pages/result/Result";
+import Result from "./pages/result/ResultPage.tsx";
 import { useState } from "react";
 import type { ResultType } from "./interfaces/interfaces.d.ts";
 import MyPage from "./pages/myPage/MyPage";
 import LandingPage from "./pages/LP/LandingPage";
+import LoginPage from "./pages/login/LoginPage.tsx";
+import RegisterPage from "./pages/register/RegisterPage.tsx";
+import QuestionFormPage from "./pages/questionForm/QuestionFormPage.tsx";
+import ForgetPasswordPage from "./pages/forgetPassword/ForgetPasswordPage.tsx";
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -31,17 +31,17 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route
             path="/login"
-            element={user ? <Navigate to="/questionnaire" /> : <Login />}
+            element={user ? <Navigate to="/questionnaire" /> : <LoginPage />}
           />
           <Route
             path="/register"
-            element={user ? <Navigate to="/questionnaire" /> : <Register />}
+            element={user ? <Navigate to="/questionnaire" /> : <RegisterPage />}
           />
           <Route
             path="/questionnaire"
             element={
               user ? (
-                <QuestionForm setDiagnosisResult={setDiagnosisResult} />
+                <QuestionFormPage setDiagnosisResult={setDiagnosisResult} />
               ) : (
                 <Navigate to="/login" />
               )
@@ -61,7 +61,7 @@ const App = () => {
             path="/mypage"
             element={user ? <MyPage /> : <Navigate to="/login" />}
           />
-          <Route path="/forget" element={<ForgetPassword />} />
+          <Route path="/forget" element={<ForgetPasswordPage />} />
         </Routes>
       </Router>
     </div>

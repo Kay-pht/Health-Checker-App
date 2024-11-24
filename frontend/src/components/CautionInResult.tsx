@@ -1,4 +1,4 @@
-const Caution = () => {
+const CautionInResult = () => {
   return (
     <div className="text-sm text-gray-800 mt-5 border-2 space-y-2">
       <div className="p-3">
@@ -24,4 +24,4 @@ const Caution = () => {
   );
 };
 
-export default Caution;
+export default CautionInResult;

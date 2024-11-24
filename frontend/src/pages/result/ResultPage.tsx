@@ -1,13 +1,13 @@
-import Top from "../../components/TopBar";
+import TopBar from "../../components/TopBar";
 import { Box, CircularProgress } from "@mui/material";
 import { ResultPageProps } from "../../interfaces/interfaces";
-import Caution from "../../components/Caution";
+import CautionInResult from "../../components/CautionInResult";
 
 // 診断結果ページ
-const Result = ({ result }: ResultPageProps) => {
+const ResultPage = ({ result }: ResultPageProps) => {
   return (
     <div>
-      <Top />
+      <TopBar />
       <div className="p-6 bg-gray-100 min-h-screen">
         <div className="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md space-y-4">
           {result ? (
@@ -35,7 +35,7 @@ const Result = ({ result }: ResultPageProps) => {
                   </span>
                 </p>
               </div>
-              <Caution />
+              <CautionInResult />
             </div>
           ) : (
             <div>
@@ -51,4 +51,4 @@ const Result = ({ result }: ResultPageProps) => {
   );
 };
 
-export default Result;
+export default ResultPage;

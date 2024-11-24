@@ -1,31 +1,31 @@
 import { useRef } from "react";
-import { frequencyArray } from "../../utils/queryData";
-import FocusNextInput from "../../../helpers/FocusNextInput";
+import { frequencyArray } from "../../utils/queryData.tsx";
+import FocusNextInput from "../../../hooks/useFocusNextInput.tsx";
 import type { QuestionCompProps } from "../../interfaces/interfaces.d.ts";
 import { FormControlLabel, Radio } from "@mui/material";
 
-const QuestionComp = ({
-  queryArray,
-  answers,
-  getAnswersFromEachPage,
-  page,
+const QuestionBlockComp = ({
+  foodQueryPage,
+  userAnswers,
+  getAnswersInEachPage,
+  currentPageNum,
 }: QuestionCompProps) => {
   const inputRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  FocusNextInput({ answers, inputRefs, queryArray });
+  FocusNextInput({ userAnswers, inputRefs, foodQueryPage });
   return (
     <div className="mb-5 ">
       {
         // map関数で質問ごとに表示
-        queryArray.map((query, index) => (
+        foodQueryPage.map((query, index) => (
           <div
             className={`transition-opacity duration-300 font-semibold bg-white rounded-lg shadow-md p-4 mb-8 ${
-              answers[query.key] ? "opacity-50" : "opacity-100"
+              userAnswers[query.key] ? "opacity-50" : "opacity-100"
             }`}
             key={query.key}
           >
             <h3 className="text-xl text-gray-600 mt-3 pb-4 ml-2 text-center">
-              {index + page * 5 - 4}.{query.value}
+              {index + currentPageNum * 5 - 4}.{query.value}
             </h3>
             <div className="flex justify-center space-x-10 mt-5 mb-5">
               {
@@ -42,8 +42,8 @@ const QuestionComp = ({
                             id={`${query.key}_option${freq.key}`}
                             name={query.key}
                             value={freq.key}
-                            checked={answers[query.key] === freq.key}
-                            onChange={getAnswersFromEachPage}
+                            checked={userAnswers[query.key] === freq.key}
+                            onChange={getAnswersInEachPage}
                             inputRef={(el) => (inputRefs.current[index] = el)}
                             sx={{
                               "& .MuiSvgIcon-root": {
@@ -79,4 +79,4 @@ const QuestionComp = ({
   );
 };
 
-export default QuestionComp;
+export default QuestionBlockComp;

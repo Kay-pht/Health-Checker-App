@@ -1,10 +1,10 @@
 import useSWR from "swr";
 import type { DBResultType } from "../../interfaces/interfaces.d.ts";
-import Top from "../../components/TopBar";
 import { Box, CircularProgress } from "@mui/material";
+import TopBar from "../../components/TopBar.tsx";
 
 const MyPage = () => {
-  const fetcher = async (url: string) => {
+  const fetchUserHistoryData = async (url: string) => {
     // sessionStorageからトークンを取得
     const token = sessionStorage.getItem("authToken");
     if (!token) {
@@ -31,14 +31,14 @@ const MyPage = () => {
     }
   };
 
-  const { data, error } = useSWR("/api/mypage", fetcher);
+  const { data, error } = useSWR("/api/mypage", fetchUserHistoryData);
 
   if (error) return <div>Sorry...Please Log in again</div>;
 
   return (
     <div>
-      <Top />
-
+      import Top from "../../components/TopBar";
+      <TopBar />
       <div className="p-6 bg-gray-100 min-h-screen">
         <h1 className="text-2xl font-bold mb-4">これまでの診断結果</h1>
         {!data && (

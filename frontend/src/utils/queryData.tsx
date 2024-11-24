@@ -119,7 +119,7 @@ const queryArray_page5 = [
   },
 ] as const;
 
-export const queryArrayPages = [
+export const foodQueryPages = [
   queryArray_page1,
   queryArray_page2,
   queryArray_page3,

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { forgetValidationSchema } from "../../utils/validationSchema";
-import type { UserAuth } from "../../interfaces/interfaces.d.ts";
-import { submitPasswordResetEmail } from "../../firebase";
+import { forgetValidationSchema } from "../../utils/validationSchema.ts";
+import type { UserAuth } from "../../interfaces/interfaces";
+import { submitPasswordResetEmail } from "../../firebase.ts";
 // import SignOutButton from "../../component/SignOutButton";
 import { Link } from "react-router-dom";
 import { Alert, TextField } from "@mui/material";
-import Top from "../../components/TopBar.tsx";
+import TopBar from "../../components/TopBar.tsx";
 
-const ForgetPassword = () => {
+const ForgetPasswordPage = () => {
   // ログインしていれば回答フォームへ接続
   const [message, setMessage] = useState("");
 
@@ -29,7 +29,7 @@ const ForgetPassword = () => {
 
   return (
     <div>
-      <Top />
+      <TopBar />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
           <h1 className="text-2xl font-bold mb-6 text-center">
@@ -74,4 +74,4 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;
+export default ForgetPasswordPage;

@@ -12,3 +12,11 @@ export interface answerByChatGPTType {
   recommendedFoods: string[];
   score: number;
 }
+
+export interface Result {
+  userId?: string;
+  recommendedFoods: string[];
+  missingNutrients: string[];
+  score: number;
+  createdAt: Date;
+}

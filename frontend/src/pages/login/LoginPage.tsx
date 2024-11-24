@@ -1,16 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginValidationSchema } from "../../utils/validationSchema";
-import type { UserAuth } from "../../interfaces/interfaces.d.ts";
+import { loginValidationSchema } from "../../utils/validationSchema.ts";
+import type { UserAuth } from "../../interfaces/interfaces";
 import { Link } from "react-router-dom";
-import LogInWithGoogleButton from "../../components/LogInWithGoogleButton";
-import { logInWithAnonymous, logInWithEmailAndPassword } from "../../firebase";
+import LogInWithGoogleButton from "../../components/LogInWithGoogleButton.tsx";
+import {
+  logInWithAnonymous,
+  logInWithEmailAndPassword,
+} from "../../firebase.ts";
 import { Alert, TextField } from "@mui/material";
-import Top from "../../components/TopBar.tsx";
+import TopBar from "../../components/TopBar.tsx";
 
 // ログインページ
-const Login = () => {
+const LoginPage = () => {
   const {
     register,
     handleSubmit,
@@ -28,7 +31,7 @@ const Login = () => {
 
   return (
     <div>
-      <Top />
+      <TopBar />
       <div className="flex flex-col items-center justify-center min-h-screen font-sans bg-gray-100">
         <div className="bg-white p-8 pb-5 pt-3 m-10 rounded-lg shadow-md w-full max-w-lg">
           <h1 className="text-2xl font-bold text-center ">ログインする</h1>
@@ -103,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

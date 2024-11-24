@@ -3,7 +3,7 @@ import { auth, logOut } from "../firebase";
 import { Avatar } from "@mui/material";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-const Top = () => {
+const TopBar = () => {
   const [user] = useAuthState(auth);
   const userName = user?.displayName;
   const userPhotoURL = user?.photoURL;
@@ -38,4 +38,4 @@ const Top = () => {
   );
 };
 
-export default Top;
+export default TopBar;

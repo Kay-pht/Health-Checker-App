@@ -1,16 +1,16 @@
-import type { GetAnswersFromAIType } from "../src/interfaces/interfaces.d.ts";
+import type { FetchAnswersFromAIType } from "../src/interfaces/interfaces";
 
 //回答をバックエンドに投げて、AIによる診断結果(レス)を表示する関数
-const GetAnswersFromAI = async ({
+const fetchAnswersFromAI = async ({
   e,
   user,
-  answers,
+  userAnswers,
   setDiagnosisResult,
   navigate,
-}: GetAnswersFromAIType) => {
+}: FetchAnswersFromAIType) => {
   e.preventDefault();
 
-  const submittedAnswer = { content: answers };
+  const submittedAnswer = { content: userAnswers };
   if (!user) {
     alert("Please sign in to proceed");
     return;
@@ -43,4 +43,4 @@ const GetAnswersFromAI = async ({
   }
 };
 
-export default GetAnswersFromAI;
+export default fetchAnswersFromAI;

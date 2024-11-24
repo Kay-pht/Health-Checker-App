@@ -1,7 +1,7 @@
 import express, { Response } from "express";
 import OpenAI from "openai";
 import prompt from "../helpers/prompt.mjs";
-import { authenticate } from "../middlewares/authenticate.mjs";
+import { firebaseAuthMiddleware } from "../middlewares/firebaseAuthMiddleware.mjs";
 import type {
   answerByChatGPTType,
   CustomAuthRequest,
@@ -18,7 +18,7 @@ const openai = new OpenAI({
 // フロントから回答を受け取る→トークン検証→ChatGPTに回答を投げる→AIの診断結果をDB登録→userに結果返却
 router.post(
   "/",
-  authenticate,
+  firebaseAuthMiddleware,
   async (req: CustomAuthRequest, res: Response) => {
     try {
       const answers = req.body.content;
