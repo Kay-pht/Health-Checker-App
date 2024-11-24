@@ -4,6 +4,6 @@ import handleChatCompletion from "../controllers/chatCompletionControllers.mjs";
 
 const router = express.Router();
 
-router.post("/", firebaseAuthMiddleware, handleChatCompletion);
+router.get("/", firebaseAuthMiddleware, handleChatCompletion);
 
 export default router;

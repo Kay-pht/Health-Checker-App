@@ -1,4 +1,4 @@
-import { resultsCollection } from "../helpers/db.mjs";
+import { resultsCollection } from "../helpers/connectDB.mjs";
 import type {
   answerByChatGPTType,
   CustomAuthRequest,
@@ -14,14 +14,17 @@ async function getResultsByUserId(req: CustomAuthRequest) {
         createdAt: -1,
       })
       .toArray();
+    if (results.length === 0) {
+      return [];
+    }
     return results;
   } catch (error) {
-    console.error("Failed to get results by user ID", error);
-    throw new Error("Failed to fetch results");
+    console.error("Failed to get results with user ID", error);
+    throw new Error("Failed to fetch results from DB");
   }
 }
 
-//結果のDB登録(AIからの回答を返却するとき)
+//結果のDB登録(AIからの診断結果を返却するとき)
 async function registerResult(
   req: CustomAuthRequest,
   answerByChatGPT: answerByChatGPTType

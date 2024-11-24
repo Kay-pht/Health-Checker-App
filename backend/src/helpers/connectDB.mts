@@ -1,9 +1,6 @@
-// import mongoose from "mongoose";
 import configEnv from "../configEnv.mjs";
 import { MongoClient } from "mongodb";
 import { Collection } from "mongodb";
-
-// mongoose.set("strictQuery", true);
 
 const { mongoUri } = configEnv;
 
@@ -11,7 +8,7 @@ if (!mongoUri) {
   throw new Error("MONGO_URI is not defined in the environment variables");
 }
 
-// MongoDBの公式SDKを使ってDB接続する
+// MongoDBの公式SDKを使用してDB接続する
 const client = new MongoClient(mongoUri);
 let resultsCollection: Collection;
 
