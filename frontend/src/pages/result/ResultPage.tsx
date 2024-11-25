@@ -2,9 +2,11 @@ import TopBar from "../../components/TopBar";
 import { Box, CircularProgress } from "@mui/material";
 import { ResultPageProps } from "../../interfaces/interfaces";
 import CautionInResult from "../../components/CautionInResult";
+import { useFocusTopPage } from "../../hooks/useFocusPageTop";
 
 // 診断結果ページ
 const ResultPage = ({ result }: ResultPageProps) => {
+  useFocusTopPage();
   return (
     <div>
       <TopBar />
@@ -13,7 +15,7 @@ const ResultPage = ({ result }: ResultPageProps) => {
           {result ? (
             <div className="result">
               <div className="font-semibold">
-                <h4 className="text-2xl font-bold  text-gray-900 mb-4">
+                <h4 className="text-2xl font-bold  text-gray-900 mb-4 ">
                   診断結果
                 </h4>
                 <p className="text-lg mb-2 text-gray-700">

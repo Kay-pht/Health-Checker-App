@@ -1,7 +1,7 @@
 import { ChatCompletionMessageParam } from "openai/resources";
 
 const prompt = (answers: {
-  [key: string]: string;
+  [key: string]: string | null;
 }): ChatCompletionMessageParam[] => {
   return [
     {

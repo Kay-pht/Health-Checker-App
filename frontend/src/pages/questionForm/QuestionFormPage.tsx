@@ -9,6 +9,7 @@ import TopBar from "../../components/TopBar.tsx";
 import useAIAnswerFetcher from "../../hooks/useFetchAnswers.tsx";
 import useGetUserAnswers from "../../hooks/useGetUserAnswers.tsx";
 import usePageHandler from "../../hooks/usePageHandler.tsx";
+import { useFocusTopComp } from "../../hooks/useFocusPageTop.tsx";
 
 // 質問フォームの親コンポーネント
 const QuestionFormPage = ({ setDiagnosisResult }: ResultProps) => {
@@ -17,6 +18,9 @@ const QuestionFormPage = ({ setDiagnosisResult }: ResultProps) => {
 
   // ページ切り替え操作のロジック
   const { currentPageNum, pageUpHandler, pageDownHandler } = usePageHandler();
+
+  // コンポーネント変更時にスクロール位置をトップに戻すロジック
+  useFocusTopComp(currentPageNum);
 
   //AIに回答を送信し、診断結果を受け取るロジック
   const fetchAnswers = useAIAnswerFetcher();

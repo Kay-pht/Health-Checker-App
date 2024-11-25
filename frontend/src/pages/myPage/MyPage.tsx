@@ -3,16 +3,20 @@ import type { DBResultType } from "../../interfaces/interfaces.d.ts";
 import { Box, CircularProgress } from "@mui/material";
 import TopBar from "../../components/TopBar.tsx";
 import fetchUserHistoryData from "../../services/fetchUserHistoryData.ts";
-import { logOut } from "../../services/firebase.ts";
+// import { logOut } from "../../services/firebase.ts";
+import { useFocusTopPage } from "../../hooks/useFocusPageTop.tsx";
 
 const MyPage = () => {
+  useFocusTopPage();
+
   // 過去の診断データをバックエンドから受け取る
   const { data, error } = useSWR("/api/mypage", fetchUserHistoryData);
 
   if (error) {
-    setInterval(() => {
-      logOut();
-    }, 5000); // エラーなら3秒後にログアウト
+    // setTimeout(async () => {
+    //   await logOut();
+    //   window.location.reload();
+    // }, 5000); // エラーなら3秒後にログアウト
     return <div>Sorry...Please Log in again</div>;
   }
 

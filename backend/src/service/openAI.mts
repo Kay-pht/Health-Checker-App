@@ -7,7 +7,9 @@ const openai = new OpenAI({
 });
 
 // データアクセス(ChatGPTとの連携)部分の実装
-async function getChatCompletion(orderedAnswers: { [key: string]: string }) {
+async function getChatCompletion(orderedAnswers: {
+  [key: string]: string | null;
+}) {
   try {
     // OpenAIのChatGPTに回答を送付して、返答をレスとして受け取る
     const completion = await openai.chat.completions.create({

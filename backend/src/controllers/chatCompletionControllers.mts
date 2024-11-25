@@ -9,6 +9,11 @@ import { registerResult } from "../service/mongoDB.mjs";
 const handleChatCompletion = async (req: Request, res: Response) => {
   try {
     const answers = req.body.content;
+
+    if (!answers) {
+      throw new Error("Answers are not provided in the request");
+    }
+
     // ユーザーの回答を正しく並び替え
     const orderedAnswers = orderAnswers(answers);
     // ChatGPTにユーザーの回答を投げる。診断結果をレスとして受け取る

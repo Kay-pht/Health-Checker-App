@@ -3,7 +3,6 @@ import {
   Route,
   Routes,
   Navigate,
-  // Navigate,
 } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./services/firebase.ts";
@@ -16,7 +15,6 @@ import LoginPage from "./pages/login/LoginPage.tsx";
 import RegisterPage from "./pages/register/RegisterPage.tsx";
 import QuestionFormPage from "./pages/questionForm/QuestionFormPage.tsx";
 import ForgetPasswordPage from "./pages/forgetPassword/ForgetPasswordPage.tsx";
-
 const App = () => {
   const [user] = useAuthState(auth);
   // 要確認
@@ -24,6 +22,7 @@ const App = () => {
   const [diagnosisResult, setDiagnosisResult] = useState<ResultType | null>(
     null
   );
+
   return (
     <div>
       <Router>

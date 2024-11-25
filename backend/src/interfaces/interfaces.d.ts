@@ -20,3 +20,7 @@ export interface Result {
   score: number;
   createdAt: Date;
 }
+
+export interface userAnswerFormatType {
+  [key: string]: string | null;
+}

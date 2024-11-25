@@ -1,9 +1,9 @@
 import express from "express";
 import { firebaseAuthMiddleware } from "../middlewares/firebaseAuthMiddleware.mjs";
-import handleChatCompletion from "../controllers/chatCompletionControllers.mjs";
+import handleMyPage from "../controllers/myPageControllers.mjs";
 
 const router = express.Router();
 
-router.get("/", firebaseAuthMiddleware, handleChatCompletion);
+router.get("/", firebaseAuthMiddleware, handleMyPage);
 
 export default router;

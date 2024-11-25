@@ -22,6 +22,7 @@ export const fetchHistoryData = async (url: string, token: string) => {
   }
 };
 
+// バックエンドにユーザーの回答を送付して、AIの診断結果をレスとして取得する関数
 export const sendAnswersFunc = async ({
   token,
   submittedAnswer,
