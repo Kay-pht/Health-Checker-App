@@ -13,6 +13,8 @@ function isUserAnswerFormatType(value: unknown): value is userAnswerFormatType {
 
 // userの回答順で格納されているリクエストを、質問番号順に並べ替える関数
 function orderAnswers(answers: unknown) {
+  // TODO:add request validation here
+
   if (!isUserAnswerFormatType(answers)) {
     throw new Error("Answers must be an object with string values");
   }

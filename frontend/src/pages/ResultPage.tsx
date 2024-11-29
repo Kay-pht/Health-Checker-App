@@ -1,8 +1,8 @@
-import TopBar from "../../components/TopBar";
 import { Box, CircularProgress } from "@mui/material";
-import { ResultPageProps } from "../../interfaces/interfaces";
-import CautionInResult from "../../components/CautionInResult";
-import { useFocusTopPage } from "../../hooks/useFocusPageTop";
+import { ResultPageProps } from "../interfaces/interfaces";
+import { useFocusTopPage } from "../hooks/useFocusPageTop";
+import TopBar from "../components/TopBar";
+import CautionInResult from "../components/CautionInResult";
 
 // 診断結果ページ
 const ResultPage = ({ result }: ResultPageProps) => {

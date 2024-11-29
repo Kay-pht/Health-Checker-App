@@ -1,15 +1,15 @@
 import React from "react";
-import { loginValidationSchema } from "../../utils/validationSchema.ts";
-import type { UserAuth } from "../../interfaces/interfaces";
 import { Link } from "react-router-dom";
-import LogInWithGoogleButton from "../../components/LogInWithGoogleButton.tsx";
+import useFormValidation from "../hooks/useFormValidation";
+import { UserAuth } from "../interfaces/interfaces";
+import { loginValidationSchema } from "../utils/validationSchema";
 import {
   logInWithAnonymous,
   logInWithEmailAndPassword,
-} from "../../services/firebase.ts";
+} from "../services/firebase";
+import TopBar from "../components/TopBar";
 import { Alert, TextField } from "@mui/material";
-import TopBar from "../../components/TopBar.tsx";
-import useFormValidation from "../../hooks/useFormValidation.tsx";
+import LogInWithGoogleButton from "../components/LogInWithGoogleButton";
 
 // ログインページ
 const LoginPage = () => {

@@ -6,7 +6,7 @@ import {
 import getChatCompletion from "../service/openAI.mjs";
 import { registerResult } from "../service/mongoDB.mjs";
 
-const handleChatCompletion = async (req: Request, res: Response) => {
+const postChatCompletion = async (req: Request, res: Response) => {
   try {
     const answers = req.body.content;
 
@@ -29,4 +29,4 @@ const handleChatCompletion = async (req: Request, res: Response) => {
   }
 };
 
-export default handleChatCompletion;
+export default postChatCompletion;

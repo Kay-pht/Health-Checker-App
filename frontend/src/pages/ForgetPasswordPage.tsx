@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import type { ForgetFormValues } from "../../interfaces/interfaces";
-import { submitPasswordResetEmail } from "../../services/firebase.ts";
-// import SignOutButton from "../../component/SignOutButton";
 import { Link } from "react-router-dom";
 import { Alert, TextField } from "@mui/material";
-import TopBar from "../../components/TopBar.tsx";
-import useFormValidation from "../../hooks/useFormValidation.tsx";
-import { forgetValidationSchema } from "../../utils/validationSchema.ts";
+import useFormValidation from "../hooks/useFormValidation";
+import { ForgetFormValues } from "../interfaces/interfaces";
+import { forgetValidationSchema } from "../utils/validationSchema";
+import { submitPasswordResetEmail } from "../services/firebase";
+import TopBar from "../components/TopBar";
 
 const ForgetPasswordPage = () => {
   const [message, setMessage] = useState("");

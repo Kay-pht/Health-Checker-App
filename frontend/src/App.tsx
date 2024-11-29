@@ -6,15 +6,16 @@ import {
 } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./services/firebase.ts";
-import Result from "./pages/result/ResultPage.tsx";
 import { useState } from "react";
 import type { ResultType } from "./interfaces/interfaces.d.ts";
-import MyPage from "./pages/myPage/MyPage";
-import LandingPage from "./pages/LP/LandingPage";
-import LoginPage from "./pages/login/LoginPage.tsx";
-import RegisterPage from "./pages/register/RegisterPage.tsx";
-import QuestionFormPage from "./pages/questionForm/QuestionFormPage.tsx";
-import ForgetPasswordPage from "./pages/forgetPassword/ForgetPasswordPage.tsx";
+import MyPage from "./pages/MyPage.tsx";
+import LandingPage from "./pages/LandingPage.tsx";
+import LoginPage from "./pages/LoginPage.tsx";
+import RegisterPage from "./pages/RegisterPage.tsx";
+import QuestionFormPage from "./pages/QuestionFormPage.tsx";
+import ResultPage from "./pages/ResultPage.tsx";
+import ForgetPasswordPage from "./pages/ForgetPasswordPage.tsx";
+
 const App = () => {
   const [user] = useAuthState(auth);
   // 要確認
@@ -50,7 +51,7 @@ const App = () => {
             path="/result"
             element={
               user ? (
-                <Result result={diagnosisResult} />
+                <ResultPage result={diagnosisResult} />
               ) : (
                 <Navigate to="/login" />
               )

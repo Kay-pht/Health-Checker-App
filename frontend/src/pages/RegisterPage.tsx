@@ -1,15 +1,15 @@
+import { Link } from "react-router-dom";
+import React from "react";
+import { Alert, TextField } from "@mui/material";
+import useFormValidation from "../hooks/useFormValidation";
+import { RegisterFormValues } from "../interfaces/interfaces";
+import { registerValidationSchema } from "../utils/validationSchema";
 import {
   logInWithAnonymous,
   signUpWithEmailAndPassword,
-} from "../../services/firebase.ts";
-import LogInWithGoogleButton from "../../components/LogInWithGoogleButton.tsx";
-import { Link } from "react-router-dom";
-import { registerValidationSchema } from "../../utils/validationSchema.ts";
-import React from "react";
-import { Alert, TextField } from "@mui/material";
-import TopBar from "../../components/TopBar.tsx";
-import { RegisterFormValues } from "../../interfaces/interfaces";
-import useFormValidation from "../../hooks/useFormValidation.tsx";
+} from "../services/firebase";
+import TopBar from "../components/TopBar";
+import LogInWithGoogleButton from "../components/LogInWithGoogleButton";
 
 const RegisterPage = () => {
   // フォームのバリデーションチェック

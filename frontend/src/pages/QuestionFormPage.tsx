@@ -1,15 +1,15 @@
-import type { ResultProps } from "../../interfaces/interfaces";
-import QuestionBlockComp from "../../components/questionFormComps/QuestionBlockComp.tsx";
-import { foodQueryPages } from "../../utils/queryData.tsx";
-import PercentBar from "../../components/questionFormComps/PercentBar.tsx";
+import TopBar from "../components/TopBar";
+import QuestionBlockComp from "../components/questionFormComps/QuestionBlockComp";
+import PercentBar from "../components/questionFormComps/PercentBar";
+import usePageHandler from "../hooks/usePageHandler";
+import useGetUserAnswers from "../hooks/useGetUserAnswers";
+import useAIAnswerFetcher from "../hooks/useFetchAnswers";
+import { useFocusTopComp } from "../hooks/useFocusPageTop";
+import { ResultProps } from "../interfaces/interfaces";
+import { foodQueryPages } from "../utils/queryData";
 import KeyboardDoubleArrowLeftRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
 import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
-import TopBar from "../../components/TopBar.tsx";
-import useAIAnswerFetcher from "../../hooks/useFetchAnswers.tsx";
-import useGetUserAnswers from "../../hooks/useGetUserAnswers.tsx";
-import usePageHandler from "../../hooks/usePageHandler.tsx";
-import { useFocusTopComp } from "../../hooks/useFocusPageTop.tsx";
 
 // 質問フォームの親コンポーネント
 const QuestionFormPage = ({ setDiagnosisResult }: ResultProps) => {

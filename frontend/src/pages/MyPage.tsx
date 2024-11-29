@@ -1,10 +1,10 @@
 import useSWR from "swr";
-import type { DBResultType } from "../../interfaces/interfaces.d.ts";
+import type { DBResultType } from "../interfaces/interfaces";
 import { Box, CircularProgress } from "@mui/material";
-import TopBar from "../../components/TopBar.tsx";
-import fetchUserHistoryData from "../../services/fetchUserHistoryData.ts";
+import TopBar from "../components/TopBar.tsx";
+import fetchUserHistoryData from "../services/fetchUserHistoryData.ts";
 // import { logOut } from "../../services/firebase.ts";
-import { useFocusTopPage } from "../../hooks/useFocusPageTop.tsx";
+import { useFocusTopPage } from "../hooks/useFocusPageTop.tsx";
 
 const MyPage = () => {
   useFocusTopPage();
