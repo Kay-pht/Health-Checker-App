@@ -5,25 +5,6 @@ import type {
   Result,
 } from "../interfaces/interfaces.js";
 
-// 結果をMongoDBから取得(マイページ表示用)
-async function getResultsByUserId(req: CustomAuthRequest) {
-  try {
-    const results = await resultsCollection
-      .find({ userId: req.userId })
-      .sort({
-        createdAt: -1,
-      })
-      .toArray();
-    if (results.length === 0) {
-      return [];
-    }
-    return results;
-  } catch (error) {
-    console.error("Failed to get results with user ID", error);
-    throw new Error("Failed to fetch results from DB");
-  }
-}
-
 //結果のDB登録(AIからの診断結果を返却するとき)
 async function registerResult(
   req: CustomAuthRequest,
@@ -47,6 +28,25 @@ async function registerResult(
   } catch (error) {
     console.error("Failed to register result", error);
     throw new Error("Failed to save result");
+  }
+}
+
+// 結果をMongoDBから取得(マイページ表示用)
+async function getResultsByUserId(req: CustomAuthRequest) {
+  try {
+    const results = await resultsCollection
+      .find({ userId: req.userId })
+      .sort({
+        createdAt: -1,
+      })
+      .toArray();
+    if (results.length === 0) {
+      return [];
+    }
+    return results;
+  } catch (error) {
+    console.error("Failed to get results with user ID", error);
+    throw new Error("Failed to fetch results from DB");
   }
 }
 

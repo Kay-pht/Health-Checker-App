@@ -4,6 +4,10 @@ import configEnv from "./configEnv.mjs";
 import { firebaseAuthMiddleware } from "./middlewares/firebaseAuthMiddleware.mjs";
 import postChatCompletion from "./handlers/postChatCompletion.mjs";
 import getMyPage from "./handlers/getMyPage.mjs";
+import env from "dotenv";
+
+// .envファイルの内容をprocess.envにロード
+env.config();
 
 const app = express();
 const { port } = configEnv;

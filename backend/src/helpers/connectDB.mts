@@ -7,7 +7,6 @@ const { mongoUri } = configEnv;
 if (!mongoUri) {
   throw new Error("MONGO_URI is not defined in the environment variables");
 }
-
 // MongoDBの公式SDKを使用してDB接続する
 const client = new MongoClient(mongoUri);
 let resultsCollection: Collection;
@@ -18,6 +17,7 @@ async function connectToDatabase() {
     const db = client.db("food_health_check");
     resultsCollection = db.collection("results");
     console.log("Connected to MongoDB");
+    await client.close();
   } catch (error) {
     console.error("Failed to connect to MongoDB", error);
     process.exit(1);
@@ -25,4 +25,4 @@ async function connectToDatabase() {
 }
 
 connectToDatabase();
-export { resultsCollection };
+export { resultsCollection, connectToDatabase };

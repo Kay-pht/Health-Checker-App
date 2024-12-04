@@ -1,3 +1,8 @@
+import dotenv from "dotenv";
+
+// Load environment variables from .env file
+dotenv.config();
+
 const configEnv = {
   openaiApiKey: process.env.OPENAI_API_KEY,
   databaseUrl: process.env.DATABASE_URL,

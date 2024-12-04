@@ -38,4 +38,4 @@ function parseResponseFromAI(response: string): answerByChatGPTType {
   }
 }
 
-export { orderAnswers, parseResponseFromAI };
+export { orderAnswers, parseResponseFromAI, isUserAnswerFormatType };

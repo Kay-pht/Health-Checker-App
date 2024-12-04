@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: "../dist/frontend", // ここが出力ディレクトリ
+    outDir: "../dist/frontend",
   },
   server: {
     proxy: {
