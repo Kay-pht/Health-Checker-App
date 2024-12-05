@@ -1,7 +1,7 @@
 import { Response, NextFunction } from "express";
 import admin from "firebase-admin";
 import type { CustomAuthRequest } from "../interfaces/interfaces.js";
-import initializeFirebaseAdmin from "../service/firebase.mjs";
+import { initializeFirebaseAdmin } from "../service/firebase.mjs";
 
 //firebase SDKの初期化
 initializeFirebaseAdmin();

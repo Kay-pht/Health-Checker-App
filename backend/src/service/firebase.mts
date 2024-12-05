@@ -2,15 +2,15 @@ import configEnv from "../configEnv.mjs";
 import admin from "firebase-admin";
 
 const { serviceAccountKey } = configEnv;
-if (!serviceAccountKey) {
-  throw new Error(
-    "Service account key is not defined in the environment variables."
-  );
-}
 
 //firebase SDKの初期化
-const initializeFirebaseAdmin = async () => {
+export const initializeFirebaseAdmin = async () => {
   try {
+    if (!serviceAccountKey) {
+      throw new Error(
+        "Service account key is not defined in the environment variables."
+      );
+    }
     // エンコードされたキーをbase64形式でデコード。その後、JSON形式でキーを読み出す
     const serviceAccount = JSON.parse(
       Buffer.from(serviceAccountKey, "base64").toString("utf-8")
@@ -24,5 +24,3 @@ const initializeFirebaseAdmin = async () => {
     process.exit(1);
   }
 };
-
-export default initializeFirebaseAdmin;

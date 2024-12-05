@@ -3,8 +3,9 @@ import {
   orderAnswers,
   parseResponseFromAI,
 } from "../helpers/answerHelpers.mjs";
-import getChatCompletion from "../service/openAI.mjs";
+
 import { registerResult } from "../service/mongoDB.mjs";
+import { getChatCompletion } from "../service/openAI.mjs";
 
 const postChatCompletion = async (req: Request, res: Response) => {
   try {

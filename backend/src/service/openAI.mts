@@ -34,4 +34,4 @@ async function getChatCompletion(orderedAnswers: {
   }
 }
 
-export default getChatCompletion;
+export { getChatCompletion };
