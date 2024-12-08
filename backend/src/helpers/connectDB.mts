@@ -23,5 +23,5 @@ async function connectToDatabase() {
   }
 }
 
-// connectToDatabase();
+connectToDatabase();
 export { resultsCollection, connectToDatabase };
