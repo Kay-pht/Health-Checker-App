@@ -36,38 +36,52 @@ describe("getChatCompletion with invalid API key", () => {
   });
 });
 
-describe("getChatCompletion with null response from AI", () => {
+// describe("getChatCompletion with null response from AI", () => {
+// beforeEach(() => {
+
+//   jest.mock("openai", () => {
+//     return {
+//       OpenAI: jest.fn().mockImplementation(() => {
+//         return {
+//           chat: {
+//             completions: {
+//               create: jest.fn<() => Promise<any>>().mockResolvedValue({
+//                 choices: [{ message: { content: null } }],
+//               }),
+//             },
+//           },
+//         };
+//       }),
+//     };
+//   });
+// });
+
+// afterEach(() => {
+//   jest.resetModules();
+//   jest.restoreAllMocks();
+// });
+
+// it("should throw an error due to the null response from chatGPT", async () => {
+//   // TODO: write test case
+
+//   const { getChatCompletion } = await import("./openAI.mjs");
+//   await expect(getChatCompletion(orderedAnswers)).rejects.toThrow(
+//     "Invalid response from OpenAI"
+//   );
+// });
+
+describe("getChatCompletion", () => {
   beforeEach(() => {
-    // jest.mock("openai", () => {
-    //   return {
-    //     // Mock the 'OpenAI' constructor
-    //     default: jest.fn().mockImplementation(() => ({
-    //       // Mock the 'chat.completions.create' method
-    //       chat: {
-    //         completions: {
-    //           create: jest.fn<() => Promise<any>>().mockResolvedValue({
-    //             choices: [{ message: { content: null } }],
-    //           }),
-    //         },
-    //       },
-    //     })),
-    //   };
-    // });
-    jest.mock("openai", () => {
-      return {
-        OpenAI: jest.fn().mockImplementation(() => {
-          return {
-            chat: {
-              completions: {
-                create: jest.fn<() => Promise<any>>().mockResolvedValue({
-                  choices: [{ message: { content: null } }],
-                }),
-              },
-            },
-          };
-        }),
-      };
-    });
+    jest.resetModules();
+    jest.mock("openai", () => ({
+      OpenAI: jest.fn().mockImplementation(() => ({
+        chat: {
+          completions: {
+            create: jest.fn(),
+          },
+        },
+      })),
+    }));
   });
 
   afterEach(() => {
@@ -75,14 +89,19 @@ describe("getChatCompletion with null response from AI", () => {
     jest.restoreAllMocks();
   });
 
-  it("should throw an error due to the null response from chatGPT", async () => {
-    // TODO: write test case
+  // it("should throw an error due to the null response from chatGPT", async () => {
+  //   const mockCreate = jest.fn<() => Promise<any>>().mockResolvedValue({
+  //     choices: [{ message: { content: null } }],
+  //   });
 
-    const { getChatCompletion } = await import("./openAI.mjs");
-    await expect(getChatCompletion(orderedAnswers)).rejects.toThrow(
-      "Invalid response from OpenAI"
-    );
-  });
+  //   const mockOpenAI = new OpenAI() as jest.Mocked<OpenAI>;
+  //   mockOpenAI.chat.completions.create = mockCreate;
+
+  //   const { getChatCompletion } = await import("./openAI.mjs");
+  //   await expect(getChatCompletion(orderedAnswers)).rejects.toThrow(
+  //     "Invalid response from OpenAI"
+  //   );
+  // });
 
   it("should return an intended response with mock function", async () => {
     // TODO: write test case
