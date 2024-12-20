@@ -8,6 +8,8 @@ import { useFocusTopPage } from "../hooks/useFocusPageTop.tsx";
 
 const MyPage = () => {
   useFocusTopPage();
+  // const [user, loading] = useAuthState(auth);
+  // useUserIsLoggedin({ user, loading });
 
   // 過去の診断データをバックエンドから受け取る
   const { data, error } = useSWR("/api/mypage", fetchUserHistoryData);

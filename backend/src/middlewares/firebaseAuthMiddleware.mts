@@ -28,7 +28,7 @@ export const firebaseAuthMiddleware = async (
 };
 
 // アプリケーションロジックの分離
-function getTokenFromRequest(authHeader: string | undefined): string {
+export function getTokenFromRequest(authHeader: string | undefined): string {
   if (!authHeader) {
     console.error("No authorization header found");
     throw new Error("No authorization header found");

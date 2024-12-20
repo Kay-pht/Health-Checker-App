@@ -5,6 +5,7 @@ import { firebaseAuthMiddleware } from "./middlewares/firebaseAuthMiddleware.mjs
 import postChatCompletion from "./handlers/postChatCompletion.mjs";
 import getMyPage from "./handlers/getMyPage.mjs";
 import env from "dotenv";
+import getAuthToken from "./handlers/getAuthToken.mjs";
 
 // .envファイルの内容をprocess.envにロード
 env.config();
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // ルーティング
 app.post("/api/completion", firebaseAuthMiddleware, postChatCompletion);
+app.get("/api/auth", firebaseAuthMiddleware, getAuthToken);
 app.get("/api/mypage", firebaseAuthMiddleware, getMyPage);
 
 // 上記以外のルートはindex.htmlを返す

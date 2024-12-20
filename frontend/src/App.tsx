@@ -15,14 +15,18 @@ import RegisterPage from "./pages/RegisterPage.tsx";
 import QuestionFormPage from "./pages/QuestionFormPage.tsx";
 import ResultPage from "./pages/ResultPage.tsx";
 import ForgetPasswordPage from "./pages/ForgetPasswordPage.tsx";
+import { useUserIsLoggedin } from "./hooks/useUserIsLoggedin.tsx";
 
 const App = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  useUserIsLoggedin({ user, loading });
   // 要確認
   // setDiagnosisResultをそのままプロップスとして渡しているが問題ないか？関数に内包して、関数を渡すほうが良いのか?
   const [diagnosisResult, setDiagnosisResult] = useState<ResultType | null>(
     null
   );
+
+  if (loading) return;
 
   return (
     <div>
