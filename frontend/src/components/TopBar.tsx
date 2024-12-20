@@ -9,7 +9,7 @@ const TopBar = () => {
   const userPhotoURL = user?.photoURL;
 
   return (
-    <div className="bg-blue-500 p-2 flex items-center justify-between ">
+    <div className="bg-blue-600 p-2 flex items-center justify-between ">
       <Link to={"/"}>
         <h2 className="text-white text-xl ml-3 font-extrabold">
           FoodHealth.navi
